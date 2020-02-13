@@ -1,0 +1,174 @@
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.box a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}
+
+.box a:hover {
+    color:blue;
+}
+
+body {
+    background-image: url(bgmouse.jpg);
+}
+
+.cabecalho h1 {
+    text-align: center;
+    background-color: orange;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.box > p {
+    text-align: center;
+    font-family: Arial ,'Arial Narrow', sans-serif,Tahoma,sans-serif;
+}
+#texto1 {
+    padding-top: 30%;
+}
+
+#texto2 {
+    padding-top: 35%;
+}
+
+#texto3 {
+    padding-top: 40%;
+}
+
+.cabecalho {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    background-color: orange;
+    text-align: center;
+
+}
+
+.descricao-home {
+    color: orange;
+    text-align: center;
+}
+
+.flexbox {
+    margin-top: 14%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    background-color: orange;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px 3px rgb(16, 24, 26);
+    
+}
+
+.footer {
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    line-height: 15%;
+    background-color: orange;
+}
+
+#f-home {
+    position: fixed;
+}
+
+.footer p {
+    margin: 20px 0;
+}
+footer {
+    padding-top: 3%;
+}
+
+
+/* -----------------------------------------------ESTOQUE----------------------------------------------- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#cabecalho-estoque {
+    flex-shrink: 0;
+}
+.estoque-table {
+    text-align: center;
+    margin: 50px auto;
+    background-color: white;
+    border: 15px solid green;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px rgb(30, 48, 30);
+}
+
+.titulo-tr {
+    color: green;
+    background-color: black;
+}
+
+.border-tr {
+    border: 3px solid green;
+}
+
+.teclado-1 {
+    border: 3px solid green;
+}
+
+.teclado-2 {
+    border: 3px solid green;
+}
+
+.teclado-3 {
+    border: 3px solid green;
+}
+
+.teclado-4 {
+    border: 3px solid green;
+}
+
+#footer-estoque {
+    flex-shrink: 0;
+
+}
+
+/* ------------------------------------Adicionar Produtos------------------------------------ */
+
+.bg-form {
+    width: 200px;
+    color:white;
+    border: 10px solid green;
+    border-radius: 15px;
+    background-color: green;
+    margin: 250px auto;
+    box-shadow: 5px 5px 5px 5px rgb(1, 15, 2);
+}
+
+#footer-produtos {
+    position: fixed;
+}
+
+/* ------------------------------------Informações dos Funcionários------------------------------------ */
+ul {
+    
+}
+#f-funcionarios {
+    position: fixed;
+    color: black;
+}
+
