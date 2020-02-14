@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+body {
+    background-color: #191633;
+}
+
+.topnav {
+    display: flex;
+    background-color: #1C1A3B;
+    overflow: hidden;
+    justify-content: space-between;
+  }
+  
+  
+.topnav a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+.topnav a:hover {
+    background-color: #191633;
+}
+  
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #B2C2B5;
+    background-color: #1C1A3B;
+    width: 250px;
+    height: 350px;
+    top: 0;
+    position: fixed;
+    margin-left: 325px;
+    border-radius: 20px;
+    box-shadow: 0 5px 5px 5px rgb(17, 16, 16);
+}
+
+.inside-side-bar {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#avatar {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.inside-side-bar h2 {
+    margin-top: 10px;
+    color: #8072FF;
+}
+
+.inside-side-bar p {
+    margin-top: 5px;
+}
+
+#github {
+    margin-top: 30px;
+    align-items: center;
+}
+
+#github:hover {
+    background-color: #191633;
+}
+
+.inside-side-bar a {
+    text-decoration: none;
+    color: white;
+}
+
+
+h3, form {
+    font-size: 28px;
+    line-height: 34px;
+    color: #8072FF;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.tudo {
+    flex-direction: column;
+    text-align: center;
+    width: 750px;
+    height: 943px;
+    background-color: #1C1A3B;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: 0px 5px 5px 5px rgb(17, 16, 16);
+}
+
+.sobre-mim, .habilidades{
+    color: #B2C2B5;
+
+}
+
+.educacao ul {
+    color: #B2C2B5;
+    
+}
+
+.educacao a{
+    text-decoration: none;
+    color: #B2C2B5;
+}
