@@ -46,7 +46,7 @@ div img {
     font-size: 20px;
     color: white;
     position: relative;
-    top: 50px; 
+    top: 100px; 
 }
 
 .botao-amarelo:hover {
@@ -157,6 +157,9 @@ td button:active {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    position: relative;
+    top: 100px;
+
     
 }
 
@@ -167,4 +170,9 @@ td button:active {
 td > img {
     width: 50px;
     height: 50px;
+}
+
+div:nth-of-type(3) {
+    text-align: center;
+    position: relative;
 }
