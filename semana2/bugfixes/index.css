@@ -32,7 +32,7 @@ img {
 }
 
 div>p:first-child {
-    display: inline;
+    display: block;
 }
 
 div img {
@@ -79,7 +79,17 @@ div img {
 
 #container-de-descricao > ol {
     padding: 15px 0px;
+    display: inline-block;
 }
+
+li {
+    list-style-type: decimal;
+}
+
+/* span {
+    display: inline-block;
+    text-align: center;
+} */
 
 #container-para-comprar {
     background-color: #e7eb90;
