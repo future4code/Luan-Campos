@@ -82,6 +82,7 @@ div img {
 
 #container-para-comprar {
     background-color: #e7eb90;
+    padding-top: 100px;
 }
 
 #container-para-comprar>p {
@@ -105,6 +106,7 @@ div:last-child {
 table {
     width: 60%;
     text-align: center;
+    margin: 0 auto;
 }
 
 td button {
@@ -130,7 +132,7 @@ td button:active {
 
 .container-do-search input {
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid grey;
 }
 
 .container-do-search img:hover {
@@ -155,6 +157,7 @@ td button:active {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    
 }
 
 #back-button:hover {
@@ -164,5 +167,4 @@ td button:active {
 td > img {
     width: 50px;
     height: 50px;
-
 }
