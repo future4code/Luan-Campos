@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.tudo, #header, #menu, #content1, #content2, #content3, #image, #extra, #footer {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+/* Não sei se o jeito acima é o certo para alinhar o texto, mas foi o que eu consegui! */
+
+.tudo {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr 1fr 1fr .5fr .5fr 50px;
+    height: 944px;
+}
+
+#header {
+    background-color: #2ecc40;
+}
+
+#menu {
+    background-color: #FFDC00;
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+
+#content1 {
+    background-color: #F012BE;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start:2;
+    grid-row-end: 5;
+}
+
+#content2 {
+    background-color: #0074D9;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5; 
+    grid-row-end: 7;
+}
+
+#content3 {
+    background-color: white;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 5; 
+    grid-row-end: 7;
+}
+
+#image {
+    background-color: #FF4136;
+}
+
+#extra {
+    background-color: #01FF70;
+}
+
+#footer {
+    background-color: #B10DC9;
+    grid-row-start: 7;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
