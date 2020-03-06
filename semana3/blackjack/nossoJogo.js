@@ -1,36 +1,40 @@
 import comprarCarta from './naoMexer.js'
 
-let cartaUser1 = comprarCarta();
-let cartaUser2 = comprarCarta();
-
-let cartaPc1 = comprarCarta();
-let cartaPc2 = comprarCarta();
-
-let soma1 = cartaUser1.valor + cartaUser2.valor 
-let soma2 = cartaPc1.valor + cartaPc2.valor
-
-if(confirm("Quer iniciar uma nova rodada?"))
+if (confirm("Quer iniciar uma nova rodada?"))
 {
-   
-   console.log("Usuário - cartas: " + cartaUser1.texto + " " + cartaUser2.texto + " pontuação: " + soma1)
-   console.log("Computador - cartas: " + cartaPc1.texto + " " + cartaPc2.texto + " pontuação: " + soma2)
+   let cartasUser = [comprarCarta(), comprarCarta()]
+   let cartasPc = [comprarCarta(), comprarCarta()]
 
-   if (soma1 > soma2)
+   let somaUser = cartasUser[0].valor + cartasUser[1].valor
+   let somaPc = cartasPc[0].valor + cartasPc[1].valor
+
+   while(cartasUser[0].valor === 11 && cartasUser[1].valor === 11 || cartasPc[0].valor === 11 && cartasPc[1].valor === 11)
    {
-      console.log("O usuário venceu!!!")
+      cartasUser = [comprarCarta(), comprarCarta()]
+      cartasPc = [comprarCarta(), comprarCarta()]
+
+      somaUser = cartasUser[0].valor + cartasUser[1].valor
+      somaPc = cartasPc[0].valor + cartasPc[1].valor
    }
-   else if (soma1 < soma2)
+
+   if (somaUser > somaPc)
    {
-      console.log("O computador venceu!!!")
+      console.log("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser + "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "O usuário venceu!!!")
+      alert("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser +  "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "O usuário venceu!!!")
+   }
+   else if (somaUser < somaPc)
+   {
+      console.log("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser +  "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "O computador venceu!!!")
+      alert("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser +  "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "O computador venceu!!!")
    }
    else
    {
-      console.log("Deu empate :O")
+      console.log("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser +  "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "Deu empate :(")
+      alert("Usuário - cartas: " + cartasUser[0].texto + " " + cartasUser[1].texto + " - Pontuação: " + somaUser +  "\n" + "Computador - cartas: " + cartasPc[0].texto + " " + cartasPc[1].texto + " - Pontuação: " + somaPc + "\n" + "Deu empate :(")
    }
-
-} 
-else 
+}
+else
 {
-   console.log("O jogo acabou :(")
-   alert("O jogo acabou :(")
+   alert("Adeus :(")
+   console.log("Adeus :(")
 }
