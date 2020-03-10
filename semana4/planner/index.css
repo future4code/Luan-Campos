@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, arial, sans-serif;
+}
+
+html {
+    color: whitesmoke;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(https://images.wallpaperscraft.com/image/notepad_inscription_planning_135805_1920x1080.jpg);
+    background-repeat: repeat-y;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    color:white;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+form {
+   text-align: center;
+}
+
+.dias {
+    height: 40%;
+    width: 100%;
+    margin-left: 10px;
+    background-color: #B28B7A;
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 80vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#tarefa, select, button {
+    height: 40px;
+    border-radius: 10px;
+    border-style: solid;
+    border:1px solid black;
+    
+}
+
+button {
+    width: 70px;
+}
+
+ul {
+    font-style: italic;
+}
