@@ -13,5 +13,15 @@ function onClickButton() {
     let conteudo = document.getElementById("conteudo")
 
     let novoPost = new postBlog (titulo.value, autor.value, conteudo.value)
+    let arrayPost = [novoPost.titulo, novoPost.autor, novoPost.conteudo]
+
+    for (let x in arrayPost)
+    {
+        console.log(arrayPost[x])
+    }
+
+    titulo.value = ""
+    autor.value = ""
+    conteudo.value= ""
 
 }
