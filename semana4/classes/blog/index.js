@@ -23,19 +23,17 @@ function geraPost() {
         let novoPost = new postBlog (titulo.value, autor.value, conteudo.value, img.value)
         let arrayPost = [novoPost.titulo, novoPost.autor, novoPost.conteudo, novoPost.img]
 
-        if (arrayPost[arrayPost.length - 1] === undefined)
-        {
-            arrayPost.pop()
-        }
-
         const divPost = document.getElementById("conteudo-form")
 
         divPost.innerHTML += "<p>" + arrayPost[0] + "</p>"
         divPost.innerHTML += "<p>" + arrayPost[1] + "</p>"
         divPost.innerHTML += "<p>" + arrayPost[2] + "</p>"
 
-
-        if (arrayPost[arrayPost.length - 1] !== undefined)
+        if (arrayPost[arrayPost.length - 1] === "")
+        {
+            arrayPost.pop()
+        }
+        else
         {
             divPost.innerHTML += "<img src='" + arrayPost[3] + "'>"
         }
@@ -46,6 +44,5 @@ function geraPost() {
         img.value = ""
 
         document.getElementById("conteudo-form").style.visibility = "visible";
-
     }  
 }
