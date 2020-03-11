@@ -10,10 +10,15 @@ form{
 #conteudo-form {
     margin: 0 auto;
     width: 500px;
-    height: 670px;
+    height: 100%;
     text-align: center;
     margin-top: 30px;
     border: 3px solid black;
+}
+
+input, textarea {
+    width: 300px;
+    margin-bottom: 5px;
 }
 
 p:first-child {
@@ -31,4 +36,10 @@ p:nth-child(3) {
     text-justify: inter-word;
     font-size: 20px;
     margin: 20px 20px 0;
+}
+
+img {
+    width: 350px;
+    height: 350px;
+    margin: 5px auto;
 }
