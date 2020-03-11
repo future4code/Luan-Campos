@@ -7,21 +7,29 @@ class postBlog {
     }
 }
 
-function onClickButton() {
-    let titulo = document.getElementById("titulo")
-    let autor = document.getElementById("autor")
-    let conteudo = document.getElementById("conteudo")
-
-    let novoPost = new postBlog (titulo.value, autor.value, conteudo.value)
-    let arrayPost = [novoPost.titulo, novoPost.autor, novoPost.conteudo]
-
-    for (let x in arrayPost)
+function geraPost() {
+    if (titulo.value === "" || autor.value === "" || conteudo.value === "")
     {
-        console.log(arrayPost[x])
+        alert("Preencha as lacunas!!")
     }
+    else 
+    {
+        let titulo = document.getElementById("titulo")
+        let autor = document.getElementById("autor")
+        let conteudo = document.getElementById("conteudo")
 
-    titulo.value = ""
-    autor.value = ""
-    conteudo.value= ""
+        let novoPost = new postBlog (titulo.value, autor.value, conteudo.value)
+        let arrayPost = [novoPost.titulo, novoPost.autor, novoPost.conteudo]
 
+        titulo.value = ""
+        autor.value = ""
+        conteudo.value= ""
+
+        const divPost = document.getElementById("conteudo-form")
+
+        for (let x in arrayPost)
+        {
+            divPost.innerHTML += "<p>" + arrayPost[x] + "</p>"
+        }
+    }
 }
