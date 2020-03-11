@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css"/> 
+    <script src="index.js" defer></script>
+    <title>Planner</title>
+</head>
+<body>
+    <header>Tarefas da Semana</header>
+
+    <div id= "container">
+        <div class = "dias" > <h2>Segunda-Feira</h2> <ul id = "segunda"></ul></div>
+        <div class = "dias" > <h2>Terça-Feira</h2> <ul id = "terca"></ul></div>
+        <div class = "dias" > <h2>Quarta-Feira</h2> <ul id = "quarta"></ul></div>
+        <div class = "dias" > <h2>Quinta-Feira</h2> <ul id = "quinta"></ul></div>
+        <div class = "dias" > <h2>Sexta-Feira</h2> <ul id = "sexta"></ul></div>
+        <div class = "dias" > <h2>Sábado</h2> <ul id = "sabado"></ul></div>
+        <div class = "dias" > <h2>Domingo</h2> <ul id = "domingo"></ul></div>
+    </div>
+
+    <form>
+        <input type= "text" id= "tarefa" placeholder="Insira sua tarefa">
+        <select id = "listaDiasSemana">
+            <option value = "1">Segunda-Feira</option>
+            <option value = "2">Terça-Feira</option>
+            <option value = "3">Quarta-Feira</option>
+            <option value = "4">Quinta-Feira</option>
+            <option value = "5">Sexta-Feira</option>
+            <option value = "6">Sábado</option>
+            <option value = "7">Domingo</option>
+        </select>
+        <button type= "button" onclick= "adicionaTarefa()">Adicionar</button>
+    </form>
+
+</body>
+</html>
