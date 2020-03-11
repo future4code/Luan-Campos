@@ -44,5 +44,8 @@ function geraPost() {
         autor.value = ""
         conteudo.value = ""
         img.value = ""
-    }
+
+        document.getElementById("conteudo-form").style.visibility = "visible";
+
+    }  
 }
