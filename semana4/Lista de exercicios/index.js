@@ -206,35 +206,86 @@
 
 // Exercícios de Funções de array - 1. A.
 
-const pessoas = [
-    {nome: "Pedro", idade: 20},
-    {nome: "João", idade: 10},
-    {nome: "Paula", idade: 12},
-    {nome: "Artur", idade: 89}
-]
+// const pessoas = [
+//     {nome: "Pedro", idade: 20},
+//     {nome: "João", idade: 10},
+//     {nome: "Paula", idade: 12},
+//     {nome: "Artur", idade: 89}
+// ]
 
-function retornaAdultos(array) {
-    const maiorDeidade = array.filter(
-        (maior) => 
-        {
-            return maior.idade >= 20
-        }
-    )
-    return maiorDeidade
-}
+// function retornaAdultos(array) {
+//     const maiorDeidade = array.filter(
+//         (maior) => 
+//         {
+//             return maior.idade >= 20
+//         }
+//     )
+//     return maiorDeidade
+// }
 
-console.log(retornaAdultos(pessoas))
+// console.log(retornaAdultos(pessoas))
 
-// Exercícios de Funções de array - 1. B.
+// // Exercícios de Funções de array - 1. B.
   
-function returnChild (array) {
-    const menorDeIdade = array.filter(
-        (menor) =>
+// function returnChild (array) {
+//     const menorDeIdade = array.filter(
+//         (menor) =>
+//         {
+//             return menor.idade < 20
+//         }
+//     )
+//     return menorDeIdade
+// }
+
+// console.log(returnChild(pessoas))
+
+// Exercícios de Funções de array - 2. A.
+
+const array = [1, 2, 3, 4, 5, 6]
+
+function retornaMultDois(array){
+    const valoresNovos = array.map(
+        (mult) =>
         {
-            return menor.idade < 20
+            return mult * 2
         }
     )
-    return menorDeIdade
+    return valoresNovos
 }
 
-console.log(returnChild(pessoas))
+console.log(retornaMultDois(array))
+
+// Exercícios de Funções de array - 2. B.
+
+function retornaMultTres(array){
+    const valoresNovos = array.map(
+        (mult, index, array) =>
+        {
+            return `${mult * 3 }`
+        }
+    )
+    return valoresNovos
+}
+
+console.log(retornaMultTres(array))
+
+// Exercícios de Funções de array - 2. C.
+
+function parOuImpar(array) {
+    const par = array.map(
+        (valor, index, array) =>
+        {
+            if(valor % 2 === 0)
+            {
+                return `${valor} é par`
+            }
+            else
+            {
+                return `${valor} é ímpar`
+            }
+        }
+    )
+    return par
+}
+
+console.log(parOuImpar(array))
