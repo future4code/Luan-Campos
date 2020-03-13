@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.boxes {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    margin: 50px;
+    padding: 10px;
+    text-align: justify;
+}
+
+.boxes input, select {
+    margin-bottom: 10px;
+}
+
+h1, ul {
+    text-align: center;
+}
+
+#despesas-geradas {
+    margin: 0 auto;
+    height: 100%;
+    width: 300px;
+    border:1px solid black;
+}

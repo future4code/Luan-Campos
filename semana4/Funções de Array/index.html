@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <link href="index.css" type="text/css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <div id= "container">
+        <div class= "boxes" id= "box1">
+            <h2>Controlador de despesas</h2>
+            <h3>Cadastrar despesas</h3>
+            Valor: 
+            <input type= "number" id= "valor">
+            <br>
+            Tipo:
+            <select id= "op-select">
+                <option value= "casa">Casa</option>
+                <option value= "viagem">Viagem</option>
+                <option value= "role">Rolês</option>
+                <option value= "outros">Outros</option>
+            </select>
+            <br>
+            Descrição:
+            <input id= "descricao">
+            <br>
+            <button id= "botao-cadastro" onclick="cadastrar()">Cadastrar despesa</button>
+        </div>
+
+        <div class= "boxes" id= "box2">
+            <h2>Despesas detalhadas</h2>
+            Tipo:
+            <select id= "op-select2">
+                <option value= "casa">Casa</option>
+                <option value= "viagem">Viagem</option>
+                <option value= "role">Rolês</option>
+                <option value= "outros">Outros</option>
+            </select>
+            <br>
+            Valor mínimo: 
+            <input type= "number" id= "valorMin">
+            <br>
+            Valor máximo: 
+            <input type= "number" id= "valorMax">
+            <br>
+            <button id= "botao-filtrar" onclick="(filtrarDespesas(), adicionarDespesaNaTela())">Filtrar</button><button id= "botao-limpar" onclick= "limparFiltros()">Limpar filtros</button>
+            
+        </div>
+
+        <div class= "boxes" id= "box3">
+            <h2>Extrato</h2>
+            <h3>Valor Total: <span id= "valor-total"></span></h3>
+            <br>
+            <button onclick="calculaTotal()">Calcular Total</button>
+        </div>
+    </div>
+
+    <div id = "despesas-geradas">
+        <h1>Suas Despesas</h1>
+        <ul id= "listaDespesas">
+
+        </ul>
+    </div>
+    
+</body>
+</html>
