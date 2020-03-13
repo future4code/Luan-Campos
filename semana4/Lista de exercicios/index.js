@@ -178,12 +178,28 @@
 
 // Exercício de Objetos - 3.
 
-const meuFilme = {
-    titulo: "Harry Potter e as Relíquias da Morte",
-    ano: 2010,
-    diretor: "David Yates" ,
-    atores: ["Daniel Radcliffe", " Rupert Grint", " Emma Watson"]
+// const meuFilme = {
+//     titulo: "Harry Potter e as Relíquias da Morte",
+//     ano: 2010,
+//     diretor: "David Yates" ,
+//     atores: ["Daniel Radcliffe", " Rupert Grint", " Emma Watson"]
  
-}
-console.log("Venha assistir ao filme " + meuFilme.titulo + ", de " + meuFilme.ano + ", dirigido por " + meuFilme.diretor + " e estrelado por " + meuFilme.atores)
+// }
+// console.log("Venha assistir ao filme " + meuFilme.titulo + ", de " + meuFilme.ano + ", dirigido por " + meuFilme.diretor + " e estrelado por " + meuFilme.atores)
 
+// Exercício de Objetos - 4.
+
+const dados = {
+    nome: "Luan",
+    idade: 20,
+    email: "luancnunes04@gmail.com",
+    endereco: "Rua Luis Forner"
+}
+
+function anonimizarPessoa(infoPessoa) {
+    infoPessoa.nome = "ANÔNIMO"
+
+    return infoPessoa
+}
+
+console.log(anonimizarPessoa(dados))
