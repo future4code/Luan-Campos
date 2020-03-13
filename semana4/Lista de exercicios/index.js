@@ -168,10 +168,22 @@
 
 // Exercício de Objetos - 2.
 
-function criaRetangulo(lado1, lado2) {
-    let arrayObj = {largura: lado1, altura: lado2, perimetro: 2 * (lado1 + lado2),  area: lado1 * lado2}
+// function criaRetangulo(lado1, lado2) {
+//     let arrayObj = {largura: lado1, altura: lado2, perimetro: 2 * (lado1 + lado2),  area: lado1 * lado2}
     
-    return arrayObj
-}
+//     return arrayObj
+// }
 
-console.log(criaRetangulo(10, 20))
+// console.log(criaRetangulo(10, 20))
+
+// Exercício de Objetos - 3.
+
+const meuFilme = {
+    titulo: "Harry Potter e as Relíquias da Morte",
+    ano: 2010,
+    diretor: "David Yates" ,
+    atores: ["Daniel Radcliffe", " Rupert Grint", " Emma Watson"]
+ 
+}
+console.log("Venha assistir ao filme " + meuFilme.titulo + ", de " + meuFilme.ano + ", dirigido por " + meuFilme.diretor + " e estrelado por " + meuFilme.atores)
+
