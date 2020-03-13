@@ -164,7 +164,7 @@
 
 // Exercício de Objetos - 1.
 
-        //NÃO ESQUECER
+    //Não esquecer 
 
 // Exercício de Objetos - 2.
 
@@ -292,37 +292,71 @@
 
 // Exercícios de Funções de array - 3. A.
 
-const pessoas = [
-	{ nome: "Paula", idade: 12, altura: 1.8},
-	{ nome: "João", idade: 20, altura: 1.3},
-	{ nome: "Pedro", idade: 15, altura: 1.9},
-	{ nome: "Luciano", idade: 22, altura: 1.8},
-	{ nome: "Artur", idade: 10, altura: 1.2},
-	{ nome: "Soter", idade: 70, altura: 1.9}
+// const pessoas = [
+// 	{ nome: "Paula", idade: 12, altura: 1.8},
+// 	{ nome: "João", idade: 20, altura: 1.3},
+// 	{ nome: "Pedro", idade: 15, altura: 1.9},
+// 	{ nome: "Luciano", idade: 22, altura: 1.8},
+// 	{ nome: "Artur", idade: 10, altura: 1.2},
+// 	{ nome: "Soter", idade: 70, altura: 1.9}
+// ]
+
+// function temPermissao(array) {
+//     const podeOuNao = array.filter(
+//         (valor, index, array) =>
+//         {
+//             return valor.altura >= 1.5 && valor.idade > 14 && valor.idade < 60
+//         }
+//     )
+//     return podeOuNao
+// }
+
+// console.log(temPermissao(pessoas))
+
+// // Exercícios de Funções de array - 3. B. 
+
+// function naoTemPermissao(array) {
+//     const podeOuNao = array.filter(
+//         (valor, index, array) =>
+//         {
+//             return valor.altura < 1.5 || valor.idade < 14 || valor.idade > 60
+//         }
+//     )
+//     return podeOuNao
+// }
+
+// console.log(naoTemPermissao(pessoas))
+
+// Exercícios de Funções de array - 4.
+
+const consultas = [
+	{ nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{ nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{ nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{ nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
 ]
 
-function temPermissao(array) {
-    const podeOuNao = array.filter(
+// Exercícios de Funções de array - 5.
+
+const contas = [
+	{ cliente: "João", saldoTotal: 1000, compras: [100, 200, 300] },
+	{ cliente: "Paula", saldoTotal: 7500, compras: [200, 1040] },
+	{ cliente: "Pedro", saldoTotal: 10000, compras: [5140, 6100, 100, 2000] },
+	{ cliente: "Luciano", saldoTotal: 100, compras: [100, 200, 1700] },
+	{ cliente: "Artur", saldoTotal: 1800, compras: [200, 300] },
+	{ cliente: "Soter", saldoTotal: 1200, compras: [] }
+]
+
+function atualizaSaldo (array) {
+    let valorCompra = 0
+    const teste = array.filter(
         (valor, index, array) =>
         {
-            return valor.altura >= 1.5 && valor.idade > 14 && valor.idade < 60
+            return valor.compras
         }
     )
-    return podeOuNao
+
+    return teste
 }
 
-console.log(temPermissao(pessoas))
-
-// Exercícios de Funções de array - 3. B. 
-
-function naoTemPermissao(array) {
-    const podeOuNao = array.filter(
-        (valor, index, array) =>
-        {
-            return valor.altura < 1.5 || valor.idade < 14 || valor.idade > 60
-        }
-    )
-    return podeOuNao
-}
-
-console.log(naoTemPermissao(pessoas))
+console.log(atualizaSaldo(contas))
