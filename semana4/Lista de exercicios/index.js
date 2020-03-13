@@ -241,51 +241,88 @@
 
 // Exercícios de Funções de array - 2. A.
 
-const array = [1, 2, 3, 4, 5, 6]
+// const array = [1, 2, 3, 4, 5, 6]
 
-function retornaMultDois(array){
-    const valoresNovos = array.map(
-        (mult) =>
-        {
-            return mult * 2
-        }
-    )
-    return valoresNovos
-}
+// function retornaMultDois(array){
+//     const valoresNovos = array.map(
+//         (mult) =>
+//         {
+//             return mult * 2
+//         }
+//     )
+//     return valoresNovos
+// }
 
-console.log(retornaMultDois(array))
+// console.log(retornaMultDois(array))
 
-// Exercícios de Funções de array - 2. B.
+// // Exercícios de Funções de array - 2. B.
 
-function retornaMultTres(array){
-    const valoresNovos = array.map(
-        (mult, index, array) =>
-        {
-            return `${mult * 3 }`
-        }
-    )
-    return valoresNovos
-}
+// function retornaMultTres(array){
+//     const valoresNovos = array.map(
+//         (mult, index, array) =>
+//         {
+//             return `${mult * 3 }`
+//         }
+//     )
+//     return valoresNovos
+// }
 
-console.log(retornaMultTres(array))
+// console.log(retornaMultTres(array))
 
-// Exercícios de Funções de array - 2. C.
+// // Exercícios de Funções de array - 2. C.
 
-function parOuImpar(array) {
-    const par = array.map(
+// function parOuImpar(array) {
+//     const par = array.map(
+//         (valor, index, array) =>
+//         {
+//             if(valor % 2 === 0)
+//             {
+//                 return `${valor} é par`
+//             }
+//             else
+//             {
+//                 return `${valor} é ímpar`
+//             }
+//         }
+//     )
+//     return par
+// }
+
+// console.log(parOuImpar(array))
+
+// Exercícios de Funções de array - 3. A.
+
+const pessoas = [
+	{ nome: "Paula", idade: 12, altura: 1.8},
+	{ nome: "João", idade: 20, altura: 1.3},
+	{ nome: "Pedro", idade: 15, altura: 1.9},
+	{ nome: "Luciano", idade: 22, altura: 1.8},
+	{ nome: "Artur", idade: 10, altura: 1.2},
+	{ nome: "Soter", idade: 70, altura: 1.9}
+]
+
+function temPermissao(array) {
+    const podeOuNao = array.filter(
         (valor, index, array) =>
         {
-            if(valor % 2 === 0)
-            {
-                return `${valor} é par`
-            }
-            else
-            {
-                return `${valor} é ímpar`
-            }
+            return valor.altura >= 1.5 && valor.idade > 14 && valor.idade < 60
         }
     )
-    return par
+    return podeOuNao
 }
 
-console.log(parOuImpar(array))
+console.log(temPermissao(pessoas))
+
+// Exercícios de Funções de array - 3. B. 
+
+function naoTemPermissao(array) {
+    const podeOuNao = array.filter(
+        (valor, index, array) =>
+        {
+            return valor.altura < 1.5 || valor.idade < 14 || valor.idade > 60
+        }
+    )
+    return podeOuNao
+}
+
+console.log(naoTemPermissao(pessoas))
