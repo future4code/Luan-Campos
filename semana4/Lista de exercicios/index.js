@@ -348,15 +348,12 @@ const contas = [
 ]
 
 function atualizaSaldo (array) {
-    let valorCompra = 0
-    const teste = array.filter(
-        (valor, index, array) =>
-        {
-            return valor.compras
-        }
-    )
-
-    return teste
+    array.forEach(conta => {
+        conta.compras.forEach(compra => {
+            conta.saldoTotal -= compra
+        })
+    })
+    return contas
 }
 
 console.log(atualizaSaldo(contas))
