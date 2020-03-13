@@ -189,17 +189,52 @@
 
 // Exercício de Objetos - 4.
 
-const dados = {
-    nome: "Luan",
-    idade: 20,
-    email: "luancnunes04@gmail.com",
-    endereco: "Rua Luis Forner"
+// const dados = {
+//     nome: "Luan",
+//     idade: 20,
+//     email: "luancnunes04@gmail.com",
+//     endereco: "Rua Luis Forner"
+// }
+
+// function anonimizarPessoa(infoPessoa) {
+//     infoPessoa.nome = "ANÔNIMO"
+
+//     return infoPessoa
+// }
+
+// console.log(anonimizarPessoa(dados))
+
+// Exercícios de Funções de array - 1. A.
+
+const pessoas = [
+    {nome: "Pedro", idade: 20},
+    {nome: "João", idade: 10},
+    {nome: "Paula", idade: 12},
+    {nome: "Artur", idade: 89}
+]
+
+function retornaAdultos(array) {
+    const maiorDeidade = array.filter(
+        (maior) => 
+        {
+            return maior.idade >= 20
+        }
+    )
+    return maiorDeidade
 }
 
-function anonimizarPessoa(infoPessoa) {
-    infoPessoa.nome = "ANÔNIMO"
+console.log(retornaAdultos(pessoas))
 
-    return infoPessoa
+// Exercícios de Funções de array - 1. B.
+  
+function returnChild (array) {
+    const menorDeIdade = array.filter(
+        (menor) =>
+        {
+            return menor.idade < 20
+        }
+    )
+    return menorDeIdade
 }
 
-console.log(anonimizarPessoa(dados))
+console.log(returnChild(pessoas))
