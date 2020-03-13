@@ -161,3 +161,17 @@
 // }
 
 // alerta()
+
+// Exercício de Objetos - 1.
+
+        //NÃO ESQUECER
+
+// Exercício de Objetos - 2.
+
+function criaRetangulo(lado1, lado2) {
+    let arrayObj = {largura: lado1, altura: lado2, perimetro: 2 * (lado1 + lado2),  area: lado1 * lado2}
+    
+    return arrayObj
+}
+
+console.log(criaRetangulo(10, 20))
