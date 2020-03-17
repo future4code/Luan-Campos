@@ -1,0 +1,12 @@
+.bigCard {
+    border: 2px solid black;
+    width: 400px;
+    height: 200px;
+    margin: 7px;
+}
+
+p, h4 {
+    padding-left: 90px;
+    padding-right: 5px;
+}
+
