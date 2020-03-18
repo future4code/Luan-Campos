@@ -1,0 +1,11 @@
+.imageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7px;
+    height: 40px;
+    width: 155px;
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 20px;
+}

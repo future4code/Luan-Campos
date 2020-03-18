@@ -1,0 +1,14 @@
+.smallCard {
+    display: flex;
+    align-items: center;
+    margin: 7px;
+    border: 2px solid black;
+    width: 400px;
+    height: 70px;
+}
+
+.icone {
+    padding-left: 22px;
+    background: no-repeat left center;
+    text-decoration: none;
+}
