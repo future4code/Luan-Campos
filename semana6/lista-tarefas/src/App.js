@@ -29,11 +29,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    const tarefaASerSalva = {
-      tarefa : this.state.tarefas
-    }
-
-    const tarefaString = JSON.stringify(tarefaASerSalva)
+    const tarefaString = JSON.stringify(this.state.tarefas)
 
     localStorage.setItem("listaTarefa", tarefaString)
   };
@@ -42,7 +38,7 @@ class App extends React.Component {
     const dadosTarefa = localStorage.getItem("listaTarefa")
     if(dadosTarefa !== null){
       const dadosObjeto = JSON.parse(dadosTarefa)
-      this.setState ({tarefa: dadosObjeto.texto})
+      this.setState ({tarefas: dadosObjeto})
     }
   };
 
