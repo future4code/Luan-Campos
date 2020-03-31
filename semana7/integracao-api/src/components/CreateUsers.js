@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
+import GetUsers from './GetUsers';
 
 const Formulario = styled.div `
   border: 1px solid black;
@@ -9,13 +10,12 @@ const Formulario = styled.div `
 `
 
 const Label = styled.label`
-
 `
 
 const Input = styled.input `
   float:right;
   width: 185px;
-  margin-right: 10px;
+  margin-right: 8px;
 `
 
 const Botao = styled.button `
@@ -28,73 +28,55 @@ class CreateUsers extends React.Component{
         super(props)
 
         this.state = {
-            inputNaTela: true,
-            usuarios: [],
             inputNome: "",
             inputEmail: ""
         }
     }
 
-    onChangeInputNome = event => {
-        this.setState({ inputNome: event.target.value });
-      };
-    
-      onChangeInputEmail = event => {
-        this.setState({ inputEmail: event.target.value });
-      };
-    
-      onClick = () => {
-        this.setState({ inputNaTela: !this.state.inputNaTela })
-      }
-    
-      criaUsuario = () => {
+    onChangeNome = (event) => {
+        this.setState({inputNome: event.target.value})
+    }
+
+    onChangeEmail = (event) => {
+        this.setState({inputEmail: event.target.value})
+    }
+
+    criaUsuario = () => {
         const body = {
-          name: this.state.inputNome,
-          email: this.state.inputEmail
+            name: this.state.inputNome,
+            email: this.state.inputEmail
         }
-    
+
         axios
-        .post("https://us-central1-future-apis.cloudfunctions.net/api/users", 
-          body,
-            {
+        .post("https://us-central1-future-apis.cloudfunctions.net/api/users",
+        body, {
             headers: 
-              {
-              "api-token": "luan-hamilton"
-              }
+                {
+                "api-token": "luan-hamilton"
+                }
             }
-          )
+        )
         .then(resposta => {
-          console.log(resposta)
+            console.log(resposta)
         })
         .catch(error => {
-          console.log("Deu ruim", error);
+            console.log("Deu errado: ", error)
         })
-      }
-
+    }
+    
     render() {
         return (
-            <div>
-                {this.state.inputNaTela ? 
-                <Formulario>
-                <h2>Insira os dados</h2>
-                <Label>Name: </Label><Input value= {this.state.inputNome} onChange= {this.onChangeInputNome}/>
+            <Formulario>
+                <h2>DADOS USUÁRIO</h2>
+                <Label>Nome: </Label>
+                <Input value= {this.state.inputNome} onChange = {this.onChangeNome}></Input>
                 <br/>
                 <br/>
-                <Label>Email: </Label><Input value= {this.state.inputEmail} onChange= {this.onChangeInputEmail}/>  
+                <Label>Email: </Label>
+                <Input value= {this.state.inputEmail} onChange = {this.onChangeEmail}></Input>
                 <br/>
-                <Botao onClick = {this.criaUsuario}>Enviar</Botao>
-                </Formulario>
-                : 
-                <Formulario>
-                <h2>Lista de Usuários</h2>
-                <ul>
-                    <li>
-
-                    </li>
-                </ul>
-                </Formulario>
-                }
-            </div>
+                <Botao onClick= {this.criaUsuario}>Enviar</Botao>
+            </Formulario>
         )
     }
 }

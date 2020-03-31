@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
 import CreateUsers from './components/CreateUsers';
+import GetUsers from './components/GetUsers'
 
 const Container = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 500px;
 `
 
 const BotaoEsquerda = styled.button `
@@ -19,36 +20,22 @@ const BotaoEsquerda = styled.button `
 class App extends React.Component {
   constructor(props){
     super(props)
-    
+
+    this.state = {
+      mostraOsCampos : true,
+    }
   }
 
-  componentDidMount() {
-    this.pegaUsuarios();
-  }
-
-  pegaUsuarios = () => {
-    axios.get("https://us-central1-future-apis.cloudfunctions.net/api/users", 
-      {
-        headers: 
-          {
-            "api-token": "luan-hamilton"
-          }
-        }
-     )
-    .then(resposta => {
-      console.log(resposta.data.result)
-    })
-    .catch(error => {
-      console.log("Deu ruim ", error);
-    })
+  onClickButton = () => {
+    this.setState({mostraOsCampos: !this.state.mostraOsCampos})
   }
 
   render() {
-
     return (
       <Container>
-        <BotaoEsquerda onClick = {this.onClick}>Lista de Usuários</BotaoEsquerda>
-        <CreateUsers/>
+        <BotaoEsquerda onClick = {this.onClickButton}>{this.state.mostraOsCampos ? "Lista de Usuários" : "Formulário"}</BotaoEsquerda>
+        
+        {this.state.mostraOsCampos ? <CreateUsers/> : <GetUsers/>}
       </Container>
     )
   }
