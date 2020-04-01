@@ -83,7 +83,7 @@ class GetUsers extends React.Component{
     render() {
         const renderizaUsuarios = this.state.usuarios.map(usuarios => {
         return <li key = {usuarios.id}> <strong>Nome: </strong>{usuarios.name} 
-        <img onClick = {() => {this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/>
+        <img onClick = {() => {if (window.confirm("Deseja realmente deletar o usuário?")) this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/>
         </li>
         })
 
