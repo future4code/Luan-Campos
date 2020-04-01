@@ -1,26 +1,30 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-import GetUsers from './GetUsers';
 
 const Formulario = styled.div `
   border: 1px solid black;
-  width: 250px;
-  text-align: center;
+  width: 300px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 15px;
 `
 
 const Label = styled.label`
+
 `
 
 const Input = styled.input `
-  float:right;
-  width: 185px;
-  margin-right: 8px;
+
 `
 
 const Botao = styled.button `
-  margin-top: 10px;
-  width: 100%;
+  width: 100px;
+  background-color: blue;
+  color: white;
+  height: 45px;
+
 `
 
 class CreateUsers extends React.Component{
@@ -57,9 +61,11 @@ class CreateUsers extends React.Component{
             }
         )
         .then(resposta => {
+            alert("Usuário cadastrado com sucesso")
             console.log(resposta)
         })
         .catch(error => {
+            alert("Erro ao cadastrar usuário")
             console.log("Deu errado: ", error)
         })
     }
@@ -67,14 +73,11 @@ class CreateUsers extends React.Component{
     render() {
         return (
             <Formulario>
-                <h2>DADOS USUÁRIO</h2>
+                <h2>CADASTRO</h2>
                 <Label>Nome: </Label>
                 <Input value= {this.state.inputNome} onChange = {this.onChangeNome}></Input>
-                <br/>
-                <br/>
                 <Label>Email: </Label>
                 <Input value= {this.state.inputEmail} onChange = {this.onChangeEmail}></Input>
-                <br/>
                 <Botao onClick= {this.criaUsuario}>Enviar</Botao>
             </Formulario>
         )

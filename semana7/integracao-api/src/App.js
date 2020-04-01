@@ -5,7 +5,7 @@ import CreateUsers from './components/CreateUsers';
 import GetUsers from './components/GetUsers'
 
 const Container = styled.div `
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   height: 500px;
