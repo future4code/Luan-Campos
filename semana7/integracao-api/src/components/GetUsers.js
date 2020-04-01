@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-import cross from '../images/cross.svg'
 
 const ContainerUsuarios = styled.div `
   width: 500px;
@@ -11,6 +10,7 @@ const ContainerUsuarios = styled.div `
     border-bottom: 1px solid black;
   }
 `
+
 
 const Ul = styled.ul `
     float: left;
@@ -38,7 +38,9 @@ class GetUsers extends React.Component{
         super(props)
 
         this.state = {
-            usuarios: []
+            usuarios: [],
+            informacoes: [],
+            mostraInfo: false
         }
     }
 
@@ -64,6 +66,22 @@ class GetUsers extends React.Component{
         })
     }
 
+    pegaInformacoesUsuarios = (id) => {
+        axios.get(`https://us-central1-future-apis.cloudfunctions.net/api/users/${id}`, {
+            headers:
+                {
+                    "api-token": "luan-hamilton" 
+                }
+        }).then(resposta => {
+            const infoUsuario = resposta.data.result
+            console.log(infoUsuario)
+           
+        }).catch(error => {
+            console.log("Deu ruim ", error);
+        })
+        
+    }
+
     deletaUsuario = (id) => {
         axios.delete(`https://us-central1-future-apis.cloudfunctions.net/api/users/${id}`, {
             headers:
@@ -72,7 +90,7 @@ class GetUsers extends React.Component{
                 }
             }
         )
-        .then(resposta => {
+        .then(() => {
             this.pegaUsuarios()
         })
         .catch(error => {
@@ -80,18 +98,26 @@ class GetUsers extends React.Component{
         })
     }
 
+    onClickDetalhes = () => {
+        this.setState({mostraInfo: !this.state.mostraInfo})
+        console.log(this.state.mostraInfo)
+    }
+
     render() {
         const renderizaUsuarios = this.state.usuarios.map(usuarios => {
-        return <li key = {usuarios.id}> <strong>Nome: </strong>{usuarios.name} 
-        <img onClick = {() => {if (window.confirm("Deseja realmente deletar o usuário?")) this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/>
-        </li>
+            return <li key = {usuarios.id} > 
+                {usuarios.name}
+                <button onClick = {() => {this.pegaInformacoesUsuarios(usuarios.id)}}>Detalhes</button>
+                <img onClick = {() => {if (window.confirm("Deseja realmente deletar o usuário?")) this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/>      
+            </li>
         })
+
 
         return (
             <ContainerUsuarios>
                 <h2>LISTA DE USUÁRIOS</h2>
                 <Ul>
-                    {renderizaUsuarios}
+                    {renderizaUsuarios}                   
                 </Ul>
             </ContainerUsuarios>
         )
