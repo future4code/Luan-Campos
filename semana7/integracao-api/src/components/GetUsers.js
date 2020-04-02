@@ -39,7 +39,7 @@ class GetUsers extends React.Component{
 
         this.state = {
             usuarios: [],
-            informacoes: [],
+            informacoes: "",
             mostraInfo: false
         }
     }
@@ -74,6 +74,7 @@ class GetUsers extends React.Component{
                 }
         }).then(resposta => {
             const infoUsuario = resposta.data.result
+            this.setState({informacoes: infoUsuario})
             console.log(infoUsuario)
            
         }).catch(error => {
@@ -103,12 +104,17 @@ class GetUsers extends React.Component{
         console.log(this.state.mostraInfo)
     }
 
+    renderizaInfoUsuario = () => {
+        return <div>{this.state.informacoes.name} {this.state.informacoes.email}</div>
+    }
+
     render() {
         const renderizaUsuarios = this.state.usuarios.map(usuarios => {
             return <li key = {usuarios.id} > 
                 {usuarios.name}
                 <button onClick = {() => {this.pegaInformacoesUsuarios(usuarios.id)}}>Detalhes</button>
-                <img onClick = {() => {if (window.confirm("Deseja realmente deletar o usuário?")) this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/>      
+                <img onClick = {() => {if (window.confirm("Deseja realmente deletar o usuário?")) this.deletaUsuario(usuarios.id)}} src = {require("../images/cross.svg")}/> 
+                   
             </li>
         })
 
@@ -117,7 +123,8 @@ class GetUsers extends React.Component{
             <ContainerUsuarios>
                 <h2>LISTA DE USUÁRIOS</h2>
                 <Ul>
-                    {renderizaUsuarios}                   
+                    {renderizaUsuarios}
+                    {this.renderizaInfoUsuario()}                    
                 </Ul>
             </ContainerUsuarios>
         )
