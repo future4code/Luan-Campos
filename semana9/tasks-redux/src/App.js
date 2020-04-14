@@ -1,43 +1,42 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { criaTodo } from "./actions/todo"
 
-const P = styled.p `
-  border-bottom: 1px solid purple;
+const P = styled.p`
+  border-bottom: 1px solid whitesmoke;
   background-color: whitesmoke;
   padding: 10px 0 5px 10px;
   font-style: italic;
   margin: 3px 0 3px;
+  font-size: 18px;
 
   :hover {
     cursor: pointer;
   }
+`;
 
-`
-
-const Container =  styled.div `
+const Container = styled.div`
   display: flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
-const Title = styled.h1 `
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+const Title = styled.h1`
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 90px;
   color: purple;
+`;
 
-`
-
-const TaskContainer = styled.div `
+const TaskContainer = styled.div`
   width: 700px;
   height: 100px;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   font-size: 20px;
+`;
 
-`
-
-const InputTask = styled.input `
+const InputTodo = styled.input`
   width: 681px;
   color: purple;
   font-size: inherit;
@@ -51,16 +50,16 @@ const InputTask = styled.input `
     color: purple;
     font-style: italic;
   }
-  
 `
 
-const Footer = styled.footer `
+const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
-`
+`;
 
-const Button = styled.button `
+const Button = styled.button`
   z-index: 1;
+  width: 200px;
   position: relative;
   font-size: inherit;
   font-family: inherit;
@@ -71,13 +70,12 @@ const Button = styled.button `
   background-color: whitesmoke;
   font-style: italic;
 
-
   :hover {
     cursor: pointer;
   }
 
   ::before {
-    content: '';
+    content: "";
     z-index: -1;
     position: absolute;
     top: 0;
@@ -90,31 +88,66 @@ const Button = styled.button `
   }
 
   :hover::before {
-    transition: all 0.50s ease-in-out;
+    transition: all 0.5s ease-in-out;
     transform-origin: center;
-    transform: scale(1.50);
+    transform: scale(1.5);
     opacity: 0;
   }
+`;
 
-`
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-function App() {
-  return (
-    <Container>
-      <Title>ToDo</Title>
-      <TaskContainer>
-        <InputTask placeholder = "O que você tem que fazer?"/>
-        <P>Lavar a louça</P>
-        <P>Arrumar o quarto</P>
-        <P>Fazer a janta</P>
-        <Footer>
-          <Button>Marcar como completa</Button>
-          <Button>Marcar como incompleta</Button>
-        </Footer>
-      </TaskContainer>
-      
-    </Container>
-  );
+    this.state= {
+      tasks: [
+        {
+          id: 1,
+          task: "Tarefa 1 - teste",
+          completa: false
+        }
+      ],
+      valorInput: ""
+    }
+  }
+
+  onChangeInput = (e) => {
+    this.setState({valorInput: e.target.value})
+  }
+
+  criaTarefa = () => {
+    const novaTarefa = {
+      id: Date.now(),
+      task: this.state.valorInput,
+      completa: false
+    }
+
+    const novasTarefas = [...this.state.tasks, novaTarefa]
+    this.setState({tasks: novasTarefas})
+
+    this.setState({valorInput: ""})
+  }
+
+  render() {
+    return (
+      <Container>
+        <Title>ToDo</Title>
+        <TaskContainer>
+          <InputTodo value = {this.state.valorInput} onChange = {this.onChangeInput} placeholder="O que você tem que fazer?"/>
+
+          {this.state.tasks.map(task => {
+            return <P key = {task.id}>{task.task}</P>
+          })}
+
+          <Footer>
+            <Button onClick= {this.criaTarefa}>Adicionar tarefa</Button>
+            <Button>Marcar todas como completas</Button>
+            <Button>Marcar todas como incompletas</Button>
+          </Footer>
+        </TaskContainer>
+      </Container>
+    );
+  }
 }
 
 export default App;
