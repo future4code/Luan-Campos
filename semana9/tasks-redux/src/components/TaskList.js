@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { toggleTodo } from "../actions/todo";
-import { deletaTodo } from "../actions/todo";
+import { fetchTasks, toggleTask, deleteTask } from "../actions/todo";
+
 
 const P = styled.p`
   border-bottom: 1px solid whitesmoke;
@@ -18,6 +18,11 @@ const P = styled.p`
 `;
 
 class TaskList extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchTasks()
+  }
+
   render() {
     return (
       <div>
@@ -25,18 +30,18 @@ class TaskList extends React.Component {
           .filter((task) => {
             const filter = this.props.filter;
             if (filter === "pendentes") {
-              return task.completa === false;
+              return task.done === false;
             }
             if (filter === "completas") {
-              return task.completa === true;
+              return task.done === true;
             }
             return true;
           })
           .map((task) => {
             return (
-              <P key={task.id} onClick={() => this.props.toggleTodo(task.id)}>
-                {task.task} - Completa: {String(task.completa)}
-                <button onClick={() => this.props.deletaTodo(task.id)}>
+              <P key={task.id} onClick={() => this.props.toggleTask(task.id)}>
+                {task.text} - Completa: {String(task.done)}
+                <button onClick={() => this.props.deleteTask(task.id)}>
                   Deletar
                 </button>
               </P>
@@ -56,8 +61,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleTodo: (id) => dispatch(toggleTodo(id)),
-    deletaTodo: (id) => dispatch(deletaTodo(id)),
+    fetchTasks: () => dispatch(fetchTasks()),
+    toggleTask: (id) => dispatch(toggleTask(id)),
+    deleteTask: (id) => dispatch(deleteTask(id))
   };
 };
 

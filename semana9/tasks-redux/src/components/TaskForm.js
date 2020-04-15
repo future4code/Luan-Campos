@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { criaTodo } from "../actions/todo";
+import { createTask } from "../actions/todo";
 
 const InputTodo = styled.input`
   width: 555px;
@@ -72,7 +72,7 @@ class TaskForm extends React.Component {
   };
 
   onClickAdicionar = () => {
-    this.props.criaTodo(this.state.inputText);
+    this.props.createTask(this.state.inputText);
     this.setState({inputText: ""})
   };
 
@@ -98,7 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    criaTodo: (todo) => dispatch(criaTodo(todo)) 
+    createTask: (task) => dispatch(createTask(task)) 
   };
 };
 

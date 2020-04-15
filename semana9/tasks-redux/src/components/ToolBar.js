@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { completeAllTodo } from "../actions/todo";
-import { deleteAllComplete } from "../actions/todo";
-import { setFilter } from "../actions/todo";
+import { completeAllTodo, deleteAllDone, setFilter, completeAllTasks} from "../actions/todo";
 
 const Footer = styled.footer`
   display: flex;
@@ -61,7 +59,7 @@ class ToolBar extends React.Component {
         <Button onClick={() => this.props.setFilter('todas')}>Todas</Button>
         <Button onClick={() => this.props.setFilter('pendentes')}>Pendentes</Button>
         <Button onClick={() => this.props.setFilter('completas')}>Completas</Button>
-        <Button onClick={this.props.deleteAllComplete}>
+        <Button onClick={this.props.deleteAllDone}>
           Remover completas
         </Button>
       </Footer>
@@ -72,7 +70,7 @@ class ToolBar extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     completeAllTodo: () => dispatch(completeAllTodo()),
-    deleteAllComplete: () => dispatch(deleteAllComplete()),
+    deleteAllDone: () => dispatch(deleteAllDone()),
     setFilter: (filter) => dispatch(setFilter(filter)),
   };
 };
