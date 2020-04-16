@@ -10,16 +10,6 @@ const todos = (state = initialState, action) => {
       return { ...state, taskList: action.payload.tasks };
     }
 
-    case "COMPLETE_ALL_TODO": {
-      const newTaskList = state.taskList.map((todo) => {
-        return {
-          ...todo,
-          done: true,
-        };
-      });
-      return { ...state, taskList: newTaskList };
-    }
-
     case "SET_FILTER": {
       return { ...state, filter: action.payload.filter };
     }

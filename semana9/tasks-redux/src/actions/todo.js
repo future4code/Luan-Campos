@@ -1,10 +1,6 @@
 import axios from "axios";
 
-export const completeAllTodo = () => {
-  return {
-    type: "COMPLETE_ALL_TODO",
-  };
-};
+// sync
 
 export const setFilter = (filter) => {
   return {
@@ -14,8 +10,6 @@ export const setFilter = (filter) => {
     },
   };
 };
-
-// sync
 
 export const setTasks = (tasks) => {
   return {
@@ -34,7 +28,6 @@ export const fetchTasks = () => async (dispatch, getState) => {
   );
 
   dispatch(setTasks(response.data.todos));
-  console.log(response.data.todos);
 };
 
 export const createTask = (task) => async (dispatch, getState) => {
@@ -65,18 +58,10 @@ export const deleteTask = (id) => async (dispatch, getState) => {
   dispatch(fetchTasks());
 };
 
-export const completeAllTasks = (id) => async (dispatch, getState) => {
-    const response = await axios.put(
-      `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/luan/todos/${id}/toggle`
-    );
-  
-    dispatch(fetchTasks());
-  };
-
 export const deleteAllDone = () => async (dispatch, getState) => {
-    const response = await axios.delete(
-      `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/luan/todos/delete-done`
-    );
-  
-    dispatch(fetchTasks());
-  };
+  const response = await axios.delete(
+    `https://us-central1-missao-newton.cloudfunctions.net/reduxTodo/luan/todos/delete-done`
+  );
+
+  dispatch(fetchTasks());
+};

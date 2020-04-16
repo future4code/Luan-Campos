@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { completeAllTodo, deleteAllDone, setFilter, completeAllTasks} from "../actions/todo";
+import { completeAllTodo, deleteAllDone, setFilter, toggleTask } from "../actions/todo";
 
 const Footer = styled.footer`
   display: flex;
@@ -49,30 +49,44 @@ const Button = styled.button`
 `;
 
 class ToolBar extends React.Component {
+  markAllAsComplete = () => {
+    const incompletas = this.props.taskList.map((task) => {
+      if (!task.done) {
+        return this.props.toggleTask(task.id);
+      }
+    });
+  };
+
   render() {
     return (
       <Footer>
-        <Button onClick={this.props.completeAllTodo}>
-          Marcar todas como completas
+        <Button onClick={this.markAllAsComplete}>Marcar todas como completas</Button>
+
+        <Button onClick={() => this.props.setFilter("todas")}>Todas</Button>
+        <Button onClick={() => this.props.setFilter("pendentes")}>
+          Pendentes
         </Button>
-        
-        <Button onClick={() => this.props.setFilter('todas')}>Todas</Button>
-        <Button onClick={() => this.props.setFilter('pendentes')}>Pendentes</Button>
-        <Button onClick={() => this.props.setFilter('completas')}>Completas</Button>
-        <Button onClick={this.props.deleteAllDone}>
-          Remover completas
+        <Button onClick={() => this.props.setFilter("completas")}>
+          Completas
         </Button>
+        <Button onClick={this.props.deleteAllDone}>Remover completas</Button>
       </Footer>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    completeAllTodo: () => dispatch(completeAllTodo()),
-    deleteAllDone: () => dispatch(deleteAllDone()),
-    setFilter: (filter) => dispatch(setFilter(filter)),
+    taskList: state.todos.taskList,
   };
 };
 
-export default connect(null, mapDispatchToProps)(ToolBar);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteAllDone: () => dispatch(deleteAllDone()),
+    setFilter: (filter) => dispatch(setFilter(filter)),
+    toggleTask: (id) => dispatch(toggleTask(id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToolBar);
