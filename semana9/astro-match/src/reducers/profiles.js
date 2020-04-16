@@ -1,7 +1,21 @@
-const initialState = {}
+const initialState = {
+  profileToSwipe: null,
+  matchedProfiles: []
+};
 
 const profiles = (state = initialState, action) => {
-  return state
-}
+  switch (action.type) {
+    case "SET_PROFILE": {
+      return { ...state, profileToSwipe: action.payload.profile };
+    }
 
-export default profiles
+    case "SET_MATCHED_PROFILE": {
+      return { ...state, matchedProfiles: action.payload.matchedProfile };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default profiles;
