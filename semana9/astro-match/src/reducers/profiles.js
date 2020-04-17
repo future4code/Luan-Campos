@@ -1,6 +1,8 @@
 const initialState = {
   profileToSwipe: null,
-  matchedProfiles: []
+  matchedProfiles: [],
+  selectedProfile: {}
+
 };
 
 const profiles = (state = initialState, action) => {
@@ -11,6 +13,10 @@ const profiles = (state = initialState, action) => {
 
     case "SET_MATCHED_PROFILE": {
       return { ...state, matchedProfiles: action.payload.matchedProfile };
+    }
+
+    case "SET_SELECTED_PROFILE": {
+      return { ...state, selectedProfile: action.payload.profile };
     }
 
     default:

@@ -4,15 +4,23 @@ import {connect} from 'react-redux'
 import {AppBar} from '../../components/AppBar'
 import {mdiAccountSwitch} from '@mdi/js'
 import {updateCurrentPage} from '../../actions/route'
-import {getMatches} from '../../actions/profiles'
+import {getMatches, setSelectedProfile} from '../../actions/profiles'
 import {Avatar, List, ListItem, ListText, MatchIcon} from './styled'
 
 class MatchScreen extends Component {
+	constructor(props){
+		super(props)
+
+	}
 	componentDidMount() {
 		if (this.props.getMatches) {
 			this.props.getMatches()
 		}
-		console.log(this.props.matches)
+	}
+
+	selectProfileScreen = (profile) => {
+		this.props.goToProfileScreen()
+		this.props.setSelectedProfile(profile)
 	}
 
 	render() {
@@ -29,7 +37,7 @@ class MatchScreen extends Component {
 				/>
 				<List>
 					{matches && matches.map((match) => (
-						<ListItem key={match.name}>
+						<ListItem key={match.name} onClick = {() => this.selectProfileScreen(match)} >
 							<Avatar src={match.photo}/>
 							<ListText>{match.name}</ListText>
 						</ListItem>
@@ -52,7 +60,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	goToSwipeScreen: () => dispatch(updateCurrentPage('SwipeScreen')),
-	getMatches: () => dispatch(getMatches())
+	goToProfileScreen: () => dispatch(updateCurrentPage('ProfileScreen')),
+	getMatches: () => dispatch(getMatches()),
+	setSelectedProfile: (profile) => dispatch(setSelectedProfile(profile))
 	
 })
 

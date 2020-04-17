@@ -19,6 +19,15 @@ export const setMatchedProfile = (profile) => {
   };
 };
 
+export const setSelectedProfile = (profile) => {
+  return{
+    type: "SET_SELECTED_PROFILE",
+    payload: {
+      profile
+    }
+  }
+}
+
 // ASYNC
 export const getProfile = () => async (dispatch, getState) => {
   const response = await axios.get(
@@ -26,7 +35,7 @@ export const getProfile = () => async (dispatch, getState) => {
   );
 
   dispatch(setProfile(response.data.profile));
-  console.log(response.data.profile);
+
 };
 
 export const chooseProfile = (id, choice) => async (dispatch, getState) => {
@@ -39,7 +48,7 @@ export const chooseProfile = (id, choice) => async (dispatch, getState) => {
     "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luan/choose-person",
     body
   );
-
+ 
   dispatch(getProfile());
 };
 
@@ -48,7 +57,6 @@ export const getMatches = () => async (dispatch, getState) => {
     "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luan/matches"
   );
 
-  console.log(response.data.matches);
   dispatch(setMatchedProfile(response.data.matches));
 };
 
@@ -56,4 +64,6 @@ export const clearSwipes = () => async (dispatch, getState) => {
   await axios.put(
     "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/luan/clear"
   );
+
+  dispatch(getMatches());
 };
