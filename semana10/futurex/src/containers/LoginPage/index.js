@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
+import { routes } from "../Router";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import { login } from "../../actions/data";
 
 const LoginWrapper = styled.form`
   width: 100%;
@@ -19,22 +21,39 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
   }
 
-  handleFieldChange = event => {
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+
+    if (token !== null) {
+      alert("Você já está logado!")
+      this.props.goToListScreen();
+    }
+  }
+
+  handleFieldChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
+  };
+
+  handleLogin = (e) => {
+    e.preventDefault();
+
+    this.props.login(this.state.email, this.state.password);
+    console.log(this.state);
   };
 
   render() {
     const { email, password } = this.state;
 
     return (
-      <LoginWrapper>
+      <LoginWrapper onSubmit={this.handleLogin}>
         <TextField
+          required
           onChange={this.handleFieldChange}
           name="email"
           type="email"
@@ -42,16 +61,24 @@ class LoginPage extends Component {
           value={email}
         />
         <TextField
+          required
           onChange={this.handleFieldChange}
           name="password"
           type="password"
           label="Password"
           value={password}
         />
-        <Button>Login</Button>
+        <Button type="submit">Login</Button>
       </LoginWrapper>
     );
   }
 }
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (email, password) => dispatch(login(email, password)),
+    goToListScreen: () => dispatch(push(routes.trips)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(LoginPage);

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { createNewTrip } from "../../actions/data";
+import { replace } from "connected-react-router";
+import { routes } from "../Router"
 
 const Wrapper = styled.div``;
 
@@ -17,6 +19,8 @@ const today = new Date();
 const day = today.getDate()
 const month = today.getMonth()
 const year = today.getFullYear()
+
+const min = `${year}-0${month}-${day}`
 
 const planets = [
   "Júpiter",
@@ -49,7 +53,8 @@ const appForm = [
     name: "date",
     type: "date",
     title: "Deve ser uma data no futuro",
-    min: `${today}`,
+    min: min,
+    defaultValue: min,
     label: "Data de partida ",
   },
   {
@@ -71,6 +76,14 @@ class CreateTripPage extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const token = localStorage.getItem("token")
+
+    if (token === null) {
+      this.props.goToLoginScreen()
+    }
+  }
+
   handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -90,14 +103,12 @@ class CreateTripPage extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
 
-    this.props.createNewTrip(this.state.form)
+    this.props.createNewTrip(this.state.form, localStorage.getItem("token"))
     console.log(this.state.form)
   };
 
   render() { 
-    // console.log(day)
-    // console.log(month)
-    // console.log(year)
+    console.log(min)
     return (
       <Form onSubmit={this.handleFormSubmit}>
         {appForm.map((input) => {
@@ -109,9 +120,10 @@ class CreateTripPage extends React.Component {
                 name={input.name}
                 type={input.type}
                 min={input.min}
+                defaultValue= {input.defaultValue}
                 pattern={input.pattern}
                 title={input.title}
-                value={this.state.form[input.name] || ""}
+                // value={this.state.form[input.name] || ""}
                 onChange={this.handleInputChange}
               />
             </Wrapper>
@@ -119,7 +131,7 @@ class CreateTripPage extends React.Component {
         })}
 
         <select required onChange={this.handleSelectedPlanet}>
-          <option disabled selected>
+          <option>
             -- Selecione o planeta --
           </option>
           {planets.map((planet) => {
@@ -138,7 +150,8 @@ class CreateTripPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    createNewTrip: (body) => dispatch(createNewTrip(body))
+    createNewTrip: (body, token) => dispatch(createNewTrip(body, token)),
+    goToLoginScreen: () => dispatch(replace(routes.login))
   });
 
 export default connect (null, mapDispatchToProps) (CreateTripPage);
