@@ -18,12 +18,21 @@ export const getTrips = () => async (dispatch, getState) => {
   // console.log(response.data.trips)
 };
 
-export const applyToTrip = (form, id) => async (dispatch, getState) => {
+export const applyToTrip = (body, id) => async (dispatch, getState) => {
   const response = await axios.post(
     `https://us-central1-missao-newton.cloudfunctions.net/futureX/luan/trips/${id}/apply`,
-    form
+    body
   );
-    
+
   dispatch(getTrips());
-  console.log("Foi caralho")
+  console.log("Foi caralho");
+};
+
+export const createNewTrip = (body) => async (dispatch, getState) => {
+  const response = await axios.post(
+    `https://us-central1-missao-newton.cloudfunctions.net/futureX/luan/trips`,
+    body
+  );
+
+  console.log("Foi caralho!!")
 };

@@ -4,6 +4,10 @@ import { CountryDropdown } from "react-country-region-selector";
 import { connect } from "react-redux";
 import { getTrips, applyToTrip } from "../../actions/data";
 
+const Wrapper = styled.div `
+
+`
+
 const Form = styled.form`
   display: grid;
   grid-auto-flow: row;
@@ -85,7 +89,7 @@ class ApplicationForm extends React.Component {
       <Form onSubmit={this.handleFormSubmit}>
         {appForm.map((input) => {
           return (
-            <div key={input.name}>
+            <Wrapper key={input.name}>
               <label htmlFor={input.name}>{input.label}</label>
               <input
                 required
@@ -97,16 +101,17 @@ class ApplicationForm extends React.Component {
                 value={this.state.form[input.name] || ""}
                 onChange={this.handleInputChange}
               />
-            </div>
+            </Wrapper>
           );
         })}
+
         <CountryDropdown
           value={this.state.form.country}
           onChange={(val) => this.handleSelectCountry(val)}
           // Não entendi essa função anônima que passa o parâmetro pro método
         />
 
-        <select onChange={this.handleSelectTrip}>
+        <select required onChange={this.handleSelectTrip}>
           <option value="nenhum">Nenhum</option>
           {this.props.trips.map((trip) => {
             return (
