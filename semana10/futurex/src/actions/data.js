@@ -48,20 +48,23 @@ export const createNewTrip = (body, token) => async (dispatch, getState) => {
         },
       }
     );
-    console.log("Foi caralho!!");
+    alert("Viagem criada com sucesso");
   } catch (error) {
     console.error(error);
   }
 };
 
 export const applyToTrip = (body, id) => async (dispatch, getState) => {
-  const response = await axios.post(
-    `https://us-central1-missao-newton.cloudfunctions.net/futureX/luanzinho/trips/${id}/apply`,
-    body
-  );
-
+  try {
+    const response = await axios.post(
+      `https://us-central1-missao-newton.cloudfunctions.net/futureX/luanzinho/trips/${id}/apply`,
+      body
+    );
+    alert("Sua inscrição foi feita com sucesso!")
+  } catch (error) {
+    console.error(error);
+  }
   dispatch(getTrips());
-  console.log("Foi caralho");
 };
 
 export const login = (email, password) => async (dispatch, getState) => {
@@ -93,7 +96,6 @@ export const getTripDetail = (id, token) => async (dispatch, getState) => {
   );
 
   dispatch(getTripInfo(response.data.trip));
-  console.log(response.data.trip);
 };
 
 export const approveCandidate = (candidateId, tripId, token) => async (

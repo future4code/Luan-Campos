@@ -57,7 +57,6 @@ class LoginPage extends Component {
     e.preventDefault();
 
     this.props.login(this.state.email, this.state.password);
-    console.log(this.state);
   };
 
   render() {

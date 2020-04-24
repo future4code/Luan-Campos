@@ -125,15 +125,12 @@ class CreateTripPage extends React.Component {
     this.setState({
       form: { ...this.state.form, planet: e.target.value },
     });
-
-    console.log(e.target.value);
   };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
 
     this.props.createNewTrip(this.state.form, localStorage.getItem("token"));
-    console.log(this.state.form);
   };
 
   render() {

@@ -105,7 +105,6 @@ class ApplicationForm extends React.Component {
     this.setState({
       tripId: e.target.value,
     });
-    console.log(e.target.value);
   };
 
   handleFormSubmit = (e) => {
