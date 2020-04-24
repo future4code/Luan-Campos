@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../images/logo.png"
+import Logo from "../images/logo.png";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -10,15 +10,17 @@ const StyledHeader = styled.header`
   position: absolute;
 `;
 
-const Image = styled.img  `
+const Image = styled.img`
   height: 10vh;
-`
+
+  cursor: pointer;
+`;
 
 export class Header extends React.Component {
   render() {
     return (
       <StyledHeader>
-        <Image src= {Logo}alt= "website logo"/>
+        <Image src={Logo} alt="website logo" />
       </StyledHeader>
     );
   }

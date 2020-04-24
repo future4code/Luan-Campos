@@ -109,8 +109,12 @@ class ApplicationForm extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-
     this.props.applyToTrip(this.state.form, this.state.tripId);
+
+    this.setState({ 
+      form: {},
+      tripId: ""
+    })
   };
 
   render() {
