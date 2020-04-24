@@ -20,6 +20,15 @@ export const getTripInfo = (infos) => {
   };
 };
 
+export const getTripId = (id) => {
+  return {
+    type: "GET_TRIP_ID",
+    payload: {
+      id,
+    },
+  };
+};
+
 export const getTrips = () => async (dispatch, getState) => {
   const response = await axios.get(
     "https://us-central1-missao-newton.cloudfunctions.net/futureX/luanzinho/trips"
@@ -85,4 +94,22 @@ export const getTripDetail = (id, token) => async (dispatch, getState) => {
 
   dispatch(getTripInfo(response.data.trip));
   console.log(response.data.trip);
+};
+
+export const approveCandidate = (candidateId, tripId, token) => async (
+  dispatch,
+  getState
+) => {
+  const body = {
+    approve: true,
+  };
+  const response = await axios.put(
+    `https://us-central1-missao-newton.cloudfunctions.net/futureX/luanzinho/trips/${tripId}/candidates/${candidateId}/decide`,
+    body,
+    {
+      headers: {
+        auth: token,
+      },
+    }
+  );
 };

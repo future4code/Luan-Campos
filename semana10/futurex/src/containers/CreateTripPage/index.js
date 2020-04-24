@@ -3,24 +3,55 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { createNewTrip } from "../../actions/data";
 import { replace } from "connected-react-router";
-import { routes } from "../Router"
+import { routes } from "../Router";
 
-const Wrapper = styled.div``;
-
-const Form = styled.form`
-  display: grid;
-  grid-auto-flow: row;
-  grid-gap: 10px;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
+
+`;
+
+const WrapperInput = styled.div`
+`;
+
+const Form = styled.form`
+  background-color: whitesmoke;
+  text-align: center;
+  width: 450px;
+  height: 450px;
+  border-radius: 10px;
+
+  input {
+    width: 250px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    text-align: center;
+  }
+
+  select {
+    width: 250px;
+  }
+
+  button {
+    margin: 20px auto 0;
+    display: block;
+    width: 250px;
+  }
 `;
 
 const today = new Date();
-const day = today.getDate()
-const month = today.getMonth()
-const year = today.getFullYear()
+const day = today.getDate();
+const month = today.getMonth();
+const year = today.getFullYear();
 
-const min = `${year}-0${month}-${day}`
+const min = `${year}-0${month}-${day}`;
 
 const planets = [
   "Júpiter",
@@ -77,10 +108,10 @@ class CreateTripPage extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
 
     if (token === null) {
-      this.props.goToLoginScreen()
+      this.props.goToLoginScreen();
     }
   }
 
@@ -97,61 +128,62 @@ class CreateTripPage extends React.Component {
       form: { ...this.state.form, planet: e.target.value },
     });
 
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
 
-    this.props.createNewTrip(this.state.form, localStorage.getItem("token"))
-    console.log(this.state.form)
+    this.props.createNewTrip(this.state.form, localStorage.getItem("token"));
+    console.log(this.state.form);
   };
 
-  render() { 
-    console.log(min)
+  render() {
+    console.log(min);
     return (
-      <Form onSubmit={this.handleFormSubmit}>
-        {appForm.map((input) => {
-          return (
-            <Wrapper key={input.name}>
-              <label htmlFor={input.name}>{input.label}</label>
-              <input
-                required
-                name={input.name}
-                type={input.type}
-                min={input.min}
-                defaultValue= {input.defaultValue}
-                pattern={input.pattern}
-                title={input.title}
-                // value={this.state.form[input.name] || ""}
-                onChange={this.handleInputChange}
-              />
-            </Wrapper>
-          );
-        })}
-
-        <select required onChange={this.handleSelectedPlanet}>
-          <option>
-            -- Selecione o planeta --
-          </option>
-          {planets.map((planet) => {
+      <Wrapper>
+        <Form onSubmit={this.handleFormSubmit}>
+        <h1>Criação de viagens</h1>
+          {appForm.map((input) => {
             return (
-              <option value={planet} key={planet}>
-                {planet}
-              </option>
+              <WrapperInput key={input.name}>
+                <label htmlFor={input.name}>{input.label}</label>
+                <input
+                  required
+                  name={input.name}
+                  type={input.type}
+                  min={input.min}
+                  defaultValue={input.defaultValue}
+                  pattern={input.pattern}
+                  title={input.title}
+                  // value={this.state.form[input.name] || ""}
+                  onChange={this.handleInputChange}
+                />
+              </WrapperInput>
             );
           })}
-        </select>
 
-        <button type="submit">Cadastrar</button>
-      </Form>
+          <select required onChange={this.handleSelectedPlanet}>
+            <option>-- Selecione o planeta --</option>
+            {planets.map((planet) => {
+              return (
+                <option value={planet} key={planet}>
+                  {planet}
+                </option>
+              );
+            })}
+          </select>
+
+          <button type="submit">Cadastrar</button>
+        </Form>
+      </Wrapper>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    createNewTrip: (body, token) => dispatch(createNewTrip(body, token)),
-    goToLoginScreen: () => dispatch(replace(routes.login))
-  });
+  createNewTrip: (body, token) => dispatch(createNewTrip(body, token)),
+  goToLoginScreen: () => dispatch(replace(routes.login)),
+});
 
-export default connect (null, mapDispatchToProps) (CreateTripPage);
+export default connect(null, mapDispatchToProps)(CreateTripPage);

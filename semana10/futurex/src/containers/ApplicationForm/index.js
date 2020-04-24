@@ -1,19 +1,51 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
+
 import { CountryDropdown } from "react-country-region-selector";
 import { connect } from "react-redux";
 import { getTrips, applyToTrip } from "../../actions/data";
 
+const Section = styled.section``;
 const Wrapper = styled.div `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
 
 `
 
 const Form = styled.form`
-  display: grid;
-  grid-auto-flow: row;
-  grid-gap: 10px;
-  justify-content: center;
-  align-items: center;
+  background-color: whitesmoke;
+  text-align: center;
+  width: 450px;
+  height: 450px;
+  border-radius: 10px;
+
+  Input {
+    width: 250px;
+
+  }
+
+  label {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  select {
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  Button {
+    margin: 20px auto 0;
+    display: block;
+    width: 250px;
+  }
 `;
 
 const appForm = [
@@ -47,9 +79,9 @@ class ApplicationForm extends React.Component {
 
     this.state = {
       form: {
-        country: ""
+        country: "",
       },
-      tripId: ""
+      tripId: "",
     };
   }
 
@@ -81,51 +113,52 @@ class ApplicationForm extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
 
-    this.props.applyToTrip(this.state.form, this.state.tripId)
+    this.props.applyToTrip(this.state.form, this.state.tripId);
   };
 
   render() {
     return (
-      <Form onSubmit={this.handleFormSubmit}>
-        {appForm.map((input) => {
-          return (
-            <Wrapper key={input.name}>
-              <label htmlFor={input.name}>{input.label}</label>
-              <input
-                required
-                name={input.name}
-                type={input.type}
-                min={input.min}
-                pattern={input.pattern}
-                title={input.title}
-                value={this.state.form[input.name] || ""}
-                onChange={this.handleInputChange}
-              />
-            </Wrapper>
-          );
-        })}
-
-        <CountryDropdown
-          value={this.state.form.country}
-          onChange={(val) => this.handleSelectCountry(val)}
-          // Não entendi essa função anônima que passa o parâmetro pro método
-        />
-
-        <select required onChange={this.handleSelectTrip}>
-          <option value="nenhum">Nenhum</option>
-          {this.props.trips.map((trip) => {
+      <Wrapper>
+        <Form onSubmit={this.handleFormSubmit}>
+          <h1>Formulário de inscrição</h1>
+          {appForm.map((input) => {
             return (
-              <option key={trip.id} value={trip.id}>
-                {trip.name} - {trip.planet}
-              </option>
+              <Section key={input.name}>
+                <label htmlFor={input.name}>{input.label}</label>
+                <Input
+                  required
+                  name={input.name}
+                  type={input.type}
+                  min={input.min}
+                  pattern={input.pattern}
+                  title={input.title}
+                  value={this.state.form[input.name] || ""}
+                  onChange={this.handleInputChange}
+                />
+              </Section>
             );
           })}
-        </select>
 
-        <button type="submit">
-          Enviar
-        </button>
-      </Form>
+          <CountryDropdown
+            value={this.state.form.country}
+            onChange={(val) => this.handleSelectCountry(val)}
+            // Não entendi essa função anônima que passa o parâmetro pro método
+          />
+
+          <select required onChange={this.handleSelectTrip}>
+            <option value="nenhum">Nenhum</option>
+            {this.props.trips.map((trip) => {
+              return (
+                <option key={trip.id} value={trip.id}>
+                  {trip.name} - {trip.planet}
+                </option>
+              );
+            })}
+          </select>
+
+          <Button variant= "contained" type="submit">Enviar</Button>
+        </Form>
+      </Wrapper>
     );
   }
 }
@@ -136,7 +169,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllTrips: () => dispatch(getTrips()),
-  applyToTrip: (form, id) => dispatch(applyToTrip(form, id))
+  applyToTrip: (form, id) => dispatch(applyToTrip(form, id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationForm);

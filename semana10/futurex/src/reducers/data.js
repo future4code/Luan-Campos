@@ -1,6 +1,7 @@
 const initialState = {
   trips: [],
   tripInfo: [],
+  tripId: ""
 };
 
 const data = (state = initialState, action) => {
@@ -10,6 +11,9 @@ const data = (state = initialState, action) => {
     }
     case "GET_TRIP_INFO": {
       return { ...state, tripInfo: action.payload.infos };
+    }
+    case "GET_TRIP_ID": {
+      return { ...state, tripId: action.payload.id}
     }
     default:
       return state;

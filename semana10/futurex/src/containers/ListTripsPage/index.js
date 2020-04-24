@@ -2,22 +2,36 @@ import React from "react";
 import { connect } from "react-redux";
 import { push, replace } from "connected-react-router";
 import { routes } from "../Router";
-import { getTrips, getTripDetail } from "../../actions/data";
+import { getTrips, getTripId } from "../../actions/data";
 import styled from "styled-components";
 
-const AllBoxes = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
+  height: 100vh;
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+  }
 `;
 
-const InfoBox = styled.div`
+const InfoBox = styled.li`
+  list-style: none;
   width: 200px;
   height: 100%;
-  border: 1px solid black;
   margin-bottom: 10px;
   padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+
+  button {
+    margin: 0 auto;
+  }
 `;
 
 class ListTripsPage extends React.Component {
@@ -31,53 +45,60 @@ class ListTripsPage extends React.Component {
   }
 
   handleIdTrip = (id) => {
-    this.props.getTripDetail(id, localStorage.getItem("token"));
-    this.props.goToTripsDetailsPage(id)
-
+    this.props.getTripId(id);
+    this.props.goToTripsDetailsPage();
   };
 
   render() {
     return (
-      <AllBoxes>
-        <p>Lista de Viagens</p>
-        {this.props.trips &&
-          this.props.trips.map((trips) => {
-            return (
-              <InfoBox key={trips.id}>
-                <strong>{trips.name}</strong> <p>{trips.description}</p>{" "}
-                <p>
-                  <strong>Planeta: </strong>
-                  {trips.planet}
-                </p>{" "}
-                <p>
-                  <strong>Duração: </strong>
-                  {trips.durationInDays} dias
-                </p>{" "}
-                <p>
-                  <strong>Data de partida: </strong>
-                  {trips.date}
-                </p>
-                <button onClick={() => {this.handleIdTrip(trips.id)}}>Detalhes</button>
-              </InfoBox>
-            );
-          })}
+      <Wrapper>
+        <h1>Lista de Viagens</h1>
+        <ul>
+          {this.props.trips &&
+            this.props.trips.map((trips) => {
+              return (
+                <InfoBox key={trips.id}>
+                  <strong>{trips.name}</strong> <p>{trips.description}</p>{" "}
+                  <p>
+                    <strong>Planeta: </strong>
+                    {trips.planet}
+                  </p>{" "}
+                  <p>
+                    <strong>Duração: </strong>
+                    {trips.durationInDays} dias
+                  </p>{" "}
+                  <p>
+                    <strong>Data de partida: </strong>
+                    {trips.date}
+                  </p>
+                  <button
+                    onClick={() => {
+                      this.handleIdTrip(trips.id);
+                    }}
+                  >
+                    Detalhes
+                  </button>
+                </InfoBox>
+              );
+            })}
+        </ul>
         <button onClick={this.props.goToCreateTripPage}>Criar viagem</button>
-      </AllBoxes>
+      </Wrapper>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  trips: state.data.trips
+  trips: state.data.trips,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getTrips: () => dispatch(getTrips()),
-    getTripDetail: (id, token) => dispatch(getTripDetail(id, token)),
+    getTripId: (id) => dispatch(getTripId(id)),
     goToCreateTripPage: () => dispatch(push(routes.createTrip)),
     goToLoginScreen: () => dispatch(replace(routes.login)),
-    goToTripsDetailsPage: (id) => dispatch(push(routes.tripDetails)),
+    goToTripsDetailsPage: () => dispatch(push(routes.tripDetails)),
   };
 };
 

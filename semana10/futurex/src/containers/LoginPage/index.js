@@ -7,13 +7,26 @@ import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { login } from "../../actions/data";
 
-const LoginWrapper = styled.form`
-  width: 100%;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  gap: 10px;
+  background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
+`;
+const LoginWrapper = styled.form`
+  background-color: whitesmoke;
+  width: 400px;
+  height: 400px;
+  gap: 40px;
   place-content: center;
   justify-items: center;
   display: grid;
+  border-radius: 10px;
+
+  Button {
+    width: 200px;
+  }
 `;
 
 class LoginPage extends Component {
@@ -28,10 +41,10 @@ class LoginPage extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
 
-    if (token !== null) {
-      alert("Você já está logado!")
-      this.props.goToListScreen();
-    }
+    // if (token !== null) {
+    //   alert("Você já está logado!")
+    //   this.props.goToListScreen();
+    // }
   }
 
   handleFieldChange = (event) => {
@@ -51,25 +64,27 @@ class LoginPage extends Component {
     const { email, password } = this.state;
 
     return (
-      <LoginWrapper onSubmit={this.handleLogin}>
-        <TextField
-          required
-          onChange={this.handleFieldChange}
-          name="email"
-          type="email"
-          label="E-mail"
-          value={email}
-        />
-        <TextField
-          required
-          onChange={this.handleFieldChange}
-          name="password"
-          type="password"
-          label="Password"
-          value={password}
-        />
-        <Button type="submit">Login</Button>
-      </LoginWrapper>
+      <Wrapper>
+        <LoginWrapper onSubmit={this.handleLogin}>
+          <TextField
+            required
+            onChange={this.handleFieldChange}
+            name="email"
+            type="email"
+            label="E-mail"
+            value={email}
+          />
+          <TextField
+            required
+            onChange={this.handleFieldChange}
+            name="password"
+            type="password"
+            label="Password"
+            value={password}
+          />
+          <Button type="submit">Login</Button>
+        </LoginWrapper>
+      </Wrapper>
     );
   }
 }
