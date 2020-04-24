@@ -1,22 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import Logo from "../images/logo.png"
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   background-color: transparent;
   height: 10vh;
-  position:absolute;
+  position: absolute;
 `;
 
-const StyledFooter = styled.footer`
-  background-color: yellow;
-  height: 7vh;
-`;
+const Image = styled.img  `
+  height: 10vh;
+`
 
 export class Header extends React.Component {
   render() {
-    return <StyledHeader>FOTO DA LOGO</StyledHeader>;
+    return (
+      <StyledHeader>
+        <Image src= {Logo}alt= "website logo"/>
+      </StyledHeader>
+    );
   }
 }
-
