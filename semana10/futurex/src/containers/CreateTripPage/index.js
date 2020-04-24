@@ -12,11 +12,9 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100vh;
   background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
-
 `;
 
-const WrapperInput = styled.div`
-`;
+const WrapperInput = styled.div``;
 
 const Form = styled.form`
   background-color: whitesmoke;
@@ -139,11 +137,10 @@ class CreateTripPage extends React.Component {
   };
 
   render() {
-    console.log(min);
     return (
       <Wrapper>
         <Form onSubmit={this.handleFormSubmit}>
-        <h1>Criação de viagens</h1>
+          <h1>Criação de viagens</h1>
           {appForm.map((input) => {
             return (
               <WrapperInput key={input.name}>
@@ -152,11 +149,12 @@ class CreateTripPage extends React.Component {
                   required
                   name={input.name}
                   type={input.type}
-                  min={input.min}
+                  inputProps={{
+                    min: input.min,
+                    pattern: input.pattern,
+                    title: input.title,
+                  }}
                   defaultValue={input.defaultValue}
-                  pattern={input.pattern}
-                  title={input.title}
-                  // value={this.state.form[input.name] || ""}
                   onChange={this.handleInputChange}
                 />
               </WrapperInput>

@@ -8,15 +8,14 @@ import { connect } from "react-redux";
 import { getTrips, applyToTrip } from "../../actions/data";
 
 const Section = styled.section``;
-const Wrapper = styled.div `
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
-
-`
+`;
 
 const Form = styled.form`
   background-color: whitesmoke;
@@ -27,7 +26,6 @@ const Form = styled.form`
 
   Input {
     width: 250px;
-
   }
 
   label {
@@ -129,9 +127,10 @@ class ApplicationForm extends React.Component {
                   required
                   name={input.name}
                   type={input.type}
-                  min={input.min}
-                  pattern={input.pattern}
-                  title={input.title}
+                  inputProps={{ min: input.min,
+                  pattern: input.pattern,
+                  title: input.title
+                  }}
                   value={this.state.form[input.name] || ""}
                   onChange={this.handleInputChange}
                 />
@@ -146,7 +145,7 @@ class ApplicationForm extends React.Component {
           />
 
           <select required onChange={this.handleSelectTrip}>
-            <option value="nenhum">Nenhum</option>
+            <option disabled>Nenhum</option>
             {this.props.trips.map((trip) => {
               return (
                 <option key={trip.id} value={trip.id}>
@@ -156,7 +155,9 @@ class ApplicationForm extends React.Component {
             })}
           </select>
 
-          <Button variant= "contained" type="submit">Enviar</Button>
+          <Button variant="contained" type="submit">
+            Enviar
+          </Button>
         </Form>
       </Wrapper>
     );

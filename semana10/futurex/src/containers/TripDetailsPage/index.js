@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(to right bottom, #ea5a6f, #de791e, #fccf3a);
 `;
 
@@ -70,7 +70,7 @@ class TripDetailsPage extends React.Component {
           <p>
             <strong>Candidatos:</strong>
           </p>
-          {(tripInfo.candidates === "[]") ? (
+          {(tripInfo.candidates) ? (
             tripInfo.candidates.map((candidate) => {
               return (
                 <CandidateDetails key={candidate.id}>
@@ -94,7 +94,7 @@ class TripDetailsPage extends React.Component {
           )}
 
           <h3>Aprovados</h3>
-          {(tripInfo.approved === "[]") ? (
+          {(tripInfo.approved) ? (
             tripInfo.approved.map((approved) => {
               return (
                 <CandidateDetails key={approved.id}>
