@@ -2,45 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as todoActions from "../../actions/todo";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-const Form = styled.form``;
-
-const WrapperWeek = styled.div`
-  width: 1400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  margin: 0 auto;
-
-  ul {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    li {
-      list-style: none;
-      width: 100px;
-      border: 1px solid blue;
-      margin-top: 10px;
-    }
-  }
-`;
-
-const dias = [
-  "Segunda",
-  "Terça",
-  "Quarta",
-  "Quinta",
-  "Sexta",
-  "Sábado",
-  "Domingo",
-];
+import { Wrapper, Form, WrapperWeek, dias} from "./styles"
 
 class Planner extends React.Component {
   state = {
