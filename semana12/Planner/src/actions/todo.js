@@ -31,7 +31,6 @@ export const createTask = (text, day) => async (dispatch) => {
       `https://us-central1-missao-newton.cloudfunctions.net/generic/planner-hamilton-luan`,
       body
     );
-    console.log("Vai caralho", text, day)
     dispatch(getTasks());
   } catch (err) {
     console.error(err);

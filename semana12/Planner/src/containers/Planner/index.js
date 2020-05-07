@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as todoActions from "../../actions/todo";
-import { Wrapper, Form, WrapperWeek, dias} from "./styles"
+import { Wrapper, Form, WrapperWeek, weekDays} from "./styles"
 
-class Planner extends React.Component {
+export class Planner extends React.Component {
   state = {
     inputValue: "",
     day: "Segunda",
@@ -41,10 +41,10 @@ class Planner extends React.Component {
             value={this.state.day}
             onChange={this.handleSelect}
           >
-            {dias.map((dia) => {
+            {weekDays.map((day) => {
               return (
-                <option key={dia} value={dia}>
-                  {dia}
+                <option key={day} value={day}>
+                  {day}
                 </option>
               );
             })}
@@ -53,13 +53,13 @@ class Planner extends React.Component {
         </Form>
 
         <WrapperWeek>
-          {dias.map((dia) => {
+          {weekDays.map((day) => {
             return (
-              <ul key={dia}>
-                {dia}
+              <ul key={day}>
+                {day}
                 {this.props.allTasks &&
                   this.props.allTasks.map((task) => {
-                    if (task.day === dia) {
+                    if (task.day === day) {
                       return <li key={task.id}>{task.text}</li>;
                     }
                   })}

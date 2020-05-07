@@ -28,7 +28,7 @@ export const WrapperWeek = styled.div`
   }
 `;
 
-export const dias = [
+export const weekDays = [
   "Segunda",
   "Terça",
   "Quarta",
