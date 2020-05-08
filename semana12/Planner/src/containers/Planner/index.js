@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as todoActions from "../../actions/todo";
-import { Wrapper, Form, WrapperWeek, weekDays} from "./styles"
+import { Wrapper, WrapperWeek, weekDays} from "./styles"
 
 export class Planner extends React.Component {
   state = {
@@ -31,7 +31,7 @@ export class Planner extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Form onSubmit= {this.handleFormSubmit}>
+        <form onSubmit= {this.handleFormSubmit}>
           <input
             required
             value={this.state.inputValue}
@@ -50,7 +50,7 @@ export class Planner extends React.Component {
             })}
           </select>
           <button type= "submit">Criar</button>
-        </Form>
+        </form>
 
         <WrapperWeek>
           {weekDays.map((day) => {
