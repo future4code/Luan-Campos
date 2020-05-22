@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Luan",
+    "cpf": "333.444.555.67",
+    "birthDate": "1999-08-04T03:00:00.000Z",
+    "balance": 550,
+    "extract": [
+      {
+        "description": "Depósito bancário",
+        "value": 100,
+        "date": "22/05/2020"
+      },
+      { "description": "Depósito bancário", "value": 50, "date": "22/05/2020" },
+      { "description": "Depósito bancário", "value": 50, "date": "22/05/2020" },
+      { "description": "Depósito bancário", "value": 50, "date": "22/05/2020" }
+    ]
+  },
+  {
+    "name": "Tiaguinho",
+    "cpf": "123.321.111.45",
+    "birthDate": "1993-08-14T03:00:00.000Z",
+    "balance": 0,
+    "extract": []
+  }
+]
