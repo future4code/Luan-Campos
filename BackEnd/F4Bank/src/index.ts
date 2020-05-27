@@ -28,10 +28,8 @@ function createAccount(): any {
     extract: [],
   };
 
-  const age = Math.floor(
-    moment(new Date()).diff(moment(newAccount.birthDate), "years", true)
-  );
-
+  const age = moment().diff(moment(newAccount.birthDate), "years", true);
+  
   if (age >= 18) {
     const isNotValid = accounts.find((account: any) => {
       return account.cpf === newAccount.cpf;
@@ -85,9 +83,7 @@ function addBalance(name: string, cpf: string, value: number, date: string) {
   });
 }
 
-function payBill(description: string, value: number, date: string) {
-
-}
+function payBill(description: string, value: number, date: string) {}
 
 switch (option) {
   case "create": {
