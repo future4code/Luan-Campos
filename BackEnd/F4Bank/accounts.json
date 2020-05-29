@@ -1,16 +1,14 @@
 [
   {
-    "name": "Tiaguinho",
-    "cpf": "123.321.111.45",
-    "birthDate": "1993-08-14T03:00:00.000Z",
-    "balance": 0,
-    "extract": []
-  },
-  {
     "name": "Luanzinho",
-    "cpf": "123.123.123.23",
-    "birthDate": "1999-08-04T03:00:00.000Z",
-    "balance": 0,
-    "extract": []
+    "cpf": "032.123.123-44",
+    "birthDate": "04/08/1999",
+    "balance": -100,
+    "extract": [
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" },
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" },
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" }
+    ],
+    "transactions": []
   }
 ]

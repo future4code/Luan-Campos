@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import moment from "moment";
+moment.locale("pt-br");
 
 const fileName: string = "accounts.json";
 const accounts = require("../accounts.json");
@@ -8,9 +9,10 @@ const option: string = process.argv[2];
 type account = {
   name: string;
   cpf: string;
-  birthDate: moment.Moment;
+  birthDate: string;
   balance: number;
   extract: extract[];
+  transactions: extract[];
 };
 
 type extract = {
@@ -19,17 +21,23 @@ type extract = {
   value: number;
 };
 
-function createAccount(): any {
+function createAccount(
+  name: string,
+  cpf: string,
+  birthDate: moment.Moment
+): void {
+  const formatedDate = birthDate.format("L");
   const newAccount: account = {
-    name: process.argv[3],
-    cpf: process.argv[4],
-    birthDate: moment(process.argv[5], "DD/MM/YYYY"),
+    name,
+    cpf,
+    birthDate: formatedDate,
     balance: 0,
     extract: [],
+    transactions: [],
   };
 
-  const age = moment().diff(moment(newAccount.birthDate), "years", true);
-  
+  const age: number = moment().diff(moment(birthDate), "years", true);
+
   if (age >= 18) {
     const isNotValid = accounts.find((account: any) => {
       return account.cpf === newAccount.cpf;
@@ -64,11 +72,17 @@ function getBalance(name: string, cpf: string) {
   });
 }
 
-function addBalance(name: string, cpf: string, value: number, date: string) {
+function addBalance(
+  name: string,
+  cpf: string,
+  value: number,
+  date: moment.Moment
+): void {
+  const formatedDate = date.format("L");
   const extract: extract = {
     description: "Depósito bancário",
     value: value,
-    date: date,
+    date: formatedDate,
   };
 
   accounts.find((account: any) => {
@@ -83,11 +97,90 @@ function addBalance(name: string, cpf: string, value: number, date: string) {
   });
 }
 
-function payBill(description: string, value: number, date: string) {}
+function payBill(
+  name: string,
+  description: string,
+  value: number,
+  date: moment.Moment
+): void {
+  const today = moment();
+  const todayInSeconds = today.unix();
+  let formatedDate
+  let dateInSeconds
+  
+  if (!moment(date).isValid()){
+    formatedDate = today.format("L");
+    dateInSeconds = todayInSeconds
+  } else {
+    formatedDate = date.format("L");
+    dateInSeconds = date.unix();
+  }
+
+  const transactions: extract = {
+    description,
+    value: -value,
+    date: formatedDate,
+  };
+
+  const result: number = dateInSeconds - todayInSeconds;
+
+  if (result >= 0) {
+    accounts.find((account: any) => {
+      if (account.name === name && account.balance >= value) {
+        account.transactions.push(transactions);
+        fs.writeFileSync(fileName, JSON.stringify(accounts));
+        console.log("Operação realizada com sucesso");
+      } else {
+        console.log("Nome inválido ou saldo inferior ao pagamento desejado");
+      }
+    });
+  } else {
+    console.log("Data anterior ao dia de hoje, tente novamente");
+  }
+}
+
+function updateBalance(name: string, cpf: string): void {
+  const today = moment();
+
+  accounts.find((account: any) => {
+    if (account.name === name && account.cpf === cpf) {
+      account.transactions.map((transaction: any) => {
+        let dateTransaction = moment(transaction.date, "DD/MM/YYYY")
+        let result = dateTransaction.unix() - today.unix()
+
+        console.log(transaction.description, dateTransaction.unix())
+        console.log(today.unix())
+        console.log(result)
+
+        if (result < 0) {
+          account.balance += transaction.value;
+          account.extract.push(transaction);
+          account.transactions.splice(transaction)
+        }
+      });
+      fs.writeFileSync(fileName, JSON.stringify(accounts));
+      console.log("Atualizado com sucesso!");
+    } else {
+      console.log("Nome e/ou CPF inválidos");
+    }
+  });
+}
+
+function transferTo(
+  name: string,
+  cpf: string,
+  name2: string,
+  cpf2: string,
+  value: number
+): void {}
 
 switch (option) {
   case "create": {
-    createAccount();
+    createAccount(
+      process.argv[3],
+      process.argv[4],
+      moment(process.argv[5], "DD/MM/YYYY")
+    );
     break;
   }
   case "accounts": {
@@ -103,8 +196,23 @@ switch (option) {
       process.argv[3],
       process.argv[4],
       Number(process.argv[5]),
-      process.argv[6]
+      moment(process.argv[6], "DD/MM/YYYY")
     );
+    break;
+  }
+
+  case "pay": {
+    payBill(
+      process.argv[3],
+      process.argv[4],
+      Number(process.argv[5]),
+      moment(process.argv[6], "DD/MM/YYYY")
+    );
+    break;
+  }
+
+  case "update": {
+    updateBalance(process.argv[3], process.argv[4]);
     break;
   }
   default:
