@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rave",
+    "description": "muitas loucuras",
+    "date": "12/12/2100",
+    "start": "10:20",
+    "end": "10:30"
+  },
+  {
+    "name": "Festa Junina",
+    "description": "Vai ter muito quentão e maçã do amor!",
+    "date": "07/06/2020",
+    "start": "18:00",
+    "end": "23:00"
+  },
+  {
+    "name": "Festa Doidera",
+    "description": "Vai ter muita doidera e doidera!",
+    "date": "30/11/2020",
+    "start": "18:00",
+    "end": "21:00"
+  }
+]
