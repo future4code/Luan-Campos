@@ -1,0 +1,44 @@
+[
+  {
+    "id": 563,
+    "startDate": "2020-06-05T04:17:28.106Z",
+    "endDate": "2003-12-14T02:00:00.000Z",
+    "currentModule": 5,
+    "name": "Vampeta-na-night",
+    "teachers": [],
+    "students": [
+      {
+        "name": "Flávia",
+        "email": "flavia@gmail.com",
+        "id": 2,
+        "birthDate": "2000-01-01T02:00:00.000Z",
+        "hobbies": ["Cultivar frorzinhas"]
+      }
+    ]
+  },
+  {
+    "id": 333,
+    "startDate": "2020-06-05T17:27:23.103Z",
+    "endDate": "2020-08-05T03:00:00.000Z",
+    "currentModule": 3,
+    "name": "Galvão-na-night",
+    "teachers": [
+      {
+        "name": "João",
+        "email": "j@gmail.com",
+        "id": 330,
+        "birthDate": "2000-01-05T02:00:00.000Z",
+        "specialities": ["BACKEND"]
+      }
+    ],
+    "students": [
+      {
+        "name": "Luan",
+        "email": "l",
+        "id": 1,
+        "birthDate": "2000-01-01T02:00:00.000Z",
+        "hobbies": ["quebrar os código tudo"]
+      }
+    ]
+  }
+]

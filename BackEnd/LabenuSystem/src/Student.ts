@@ -10,7 +10,7 @@ export class Student implements User {
     public hobbies: string[]
   ) {}
 
-  getAge(id: number): any{
-    return moment().diff(this.birthDate, "years")
+  public getAge(id: number): any {
+    return moment().diff(this.birthDate, "years");
   }
 }

@@ -1,57 +1,58 @@
-import { FileManager } from "./FileManager";
 import { Student } from "./Student";
 import { FullTimeMission } from "./FullTimeMission";
 import { NightMission } from "./NightMission";
 import { Teacher, TEACHER_SPECIALITY } from "./Teacher";
+import { TaskManager } from "./TaskManager";
 import moment from "moment";
 
-const student1 = new Student(
-  "Luan",
-  "luan@gmail",
-  6,
-  moment("04/08/1999", "DD/MM/YYYY"),
-  ["Agradecer pela vida linda que tenho!"]
-);
+const mtm = new TaskManager();
 
-const newTeacher = new Teacher(
-  "João",
-  "joão@gmail.com",
-  2,
-  moment("01/01/1995", "DD/MM/YYYY"),
-  [TEACHER_SPECIALITY.BACKEND]
-);
+function createStudent(
+  name: string,
+  email: string,
+  id: number,
+  birthDate: moment.Moment,
+  hobbies: string[]
+) {
+  const newStudent = new Student(name, email, id, birthDate, hobbies);
+  mtm.setStudent(newStudent);
+}
 
-const hamilton = new FullTimeMission(
-  4,
-  moment("01/02/2020", "DD/MM/YYYY"),
-  moment("29/08/2020", "DD/MM/YYYY"),
-  [newTeacher],
-  [student1],
-  3
-);
-hamilton.setName("Hamilton");
+function createTeacher(
+  name: string,
+  email: string,
+  id: number,
+  birthDate: moment.Moment,
+  specialities: TEACHER_SPECIALITY[]
+) {
+  const newTeacher = new Teacher(name, email, id, birthDate, specialities);
+  mtm.setTeacher(newTeacher);
+}
 
-const einstein = new NightMission(
-  7,
-  moment("01/02/2020", "DD/MM/YYYY"),
-  moment("29/08/2020", "DD/MM/YYYY"),
-  [newTeacher],
-  [student1],
-  2
-);
-einstein.setName("Einstein-na-night");
+function createMission(
+  fullTime: boolean,
+  name: string,
+  id: number,
+  startDate: moment.Moment,
+  endDate: moment.Moment,
+  currentModule?: number
+) {
+  let mission = FullTimeMission;
+  if (!fullTime) {
+    mission = NightMission;
+  }
 
-const student2 = new Student(
-  "Lucas",
-  "sdsd@gmail",
-  54,
-  moment("04/08/1967", "DD/MM/YYYY"),
-  ["Tomar sorvete"]
-);
+  const newMission = new mission(
+    id,
+    startDate,
+    endDate,
+    currentModule
+  );
+  newMission.setName(name);
+  mtm.setMission(newMission);
+}
 
-hamilton.addStudent(student2)
+createStudent("Daniel", "danielzinhoobrabo@gmail.com", 133, moment("13/12/1912", "DD/MM/YYYY"), ["Brincar com todos os cachorrinhos possíveis"])
 
-console.log(hamilton.getStudents());
-console.log(hamilton.getTeachers());
-
-hamilton.getAgeById(54)
+//mtm.setStudentOnMission(ID_DO_ESTUDANTE, ID_DA_MISSÃO)
+mtm.setTeacherOnMission(330, 333)

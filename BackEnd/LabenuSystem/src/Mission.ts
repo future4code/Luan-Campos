@@ -4,6 +4,8 @@ import moment from "moment";
 
 export abstract class Mission {
   private name: string = "";
+  private teachers: Teacher[] = [];
+  private students: Student[] = [];
   // não colocamos no construtor,
   // porque o noem da turma de noite tem restrição
   // então é melhor controlar isso com um set
@@ -12,8 +14,6 @@ export abstract class Mission {
     private id: number,
     private startDate: moment.Moment,
     private endDate: moment.Moment,
-    private teachers: Teacher[] = [],
-    private students: Student[] = [],
     private currentModule: number | undefined = undefined
   ) {}
 
@@ -23,18 +23,6 @@ export abstract class Mission {
 
   public getName(): string {
     return this.name;
-  }
-
-  public getStartDate(): moment.Moment {
-    return this.startDate;
-  }
-
-  public getEndDate(): moment.Moment {
-    return this.endDate;
-  }
-
-  public getCurrentModule(): number | undefined {
-    return this.currentModule;
   }
 
   public getStudents(): Student[] {
