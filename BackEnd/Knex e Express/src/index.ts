@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import { AddressInfo } from "net";
 import knex from "knex";
 import dotenv from "dotenv";
-import { create } from "domain";
 
 dotenv.config();
 
@@ -99,16 +98,16 @@ const getAllMovies = async (): Promise<any> => {
   SELECT * FROM Movie LIMIT 15;
   `);
 
-  return allMovies[0]
+  return allMovies[0];
 };
 
 const getMovieByName = async (name: string): Promise<any> => {
   const result = await connection.raw(`
     SELECT * FROM Movie WHERE title LIKE '%${name}%' OR synopsis LIKE '%${name}%'
-  `)
+  `);
 
-  return result[0]
-}
+  return result[0];
+};
 
 const deleteActor = async (id: string): Promise<any> => {
   await connection("Actor").delete().where("id", id);
@@ -120,6 +119,14 @@ const avgSalary = async (gender: string): Promise<any> => {
     .where("gender", gender);
 
   console.log(result);
+};
+
+const getActors = async (): Promise<any> => {
+  const result = await connection.raw(`
+    SELECT * FROM Actor
+  `);
+
+  return result[0];
 };
 
 app.get("/actor", async (req: Request, res: Response) => {
@@ -193,8 +200,8 @@ app.post("/movie", async (req: Request, res: Response) => {
 
 app.get("/movie/all", async (req: Request, res: Response) => {
   try {
-    const movie = await getAllMovies()
-    res.status(200).send(movie)
+    const movie = await getAllMovies();
+    res.status(200).send(movie);
   } catch (err) {
     res.status(400).send({
       message: err.message,
@@ -204,8 +211,20 @@ app.get("/movie/all", async (req: Request, res: Response) => {
 
 app.get("/movie/search", async (req: Request, res: Response) => {
   try {
-    const movie = await getMovieByName(req.query.title as string)
-    res.status(200).send(movie)
+    const movie = await getMovieByName(req.query.title as string);
+    res.status(200).send(movie);
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
+
+app.get("/actor/all", async (req: Request, res: Response) => {
+  try {
+    const actores = await getActors();
+
+    res.status(200).send(actores);
   } catch (err) {
     res.status(400).send({
       message: err.message,
