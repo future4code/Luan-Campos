@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Luanzinho",
+    "cpf": "032.123.123-44",
+    "birthDate": "04/08/1999",
+    "balance": -100,
+    "extract": [
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" },
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" },
+      { "description": "Muitos lanches", "value": -25, "date": "29/05/2020" }
+    ],
+    "transactions": []
+  }
+]
