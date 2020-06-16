@@ -1,0 +1,30 @@
+[
+  {
+    "name": "João",
+    "email": "j@gmail.com",
+    "id": 330,
+    "birthDate": "2000-01-05T02:00:00.000Z",
+    "specialities": ["BACKEND"]
+  },
+  {
+    "name": "Soter",
+    "email": "s@gmail.com",
+    "id": 6425,
+    "birthDate": "2000-11-15T02:00:00.000Z",
+    "specialities": ["REACT"]
+  },
+  {
+    "name": "Paula",
+    "email": "p@gmail.com",
+    "id": 382,
+    "birthDate": "2000-11-14T02:00:00.000Z",
+    "specialities": ["TESTES"]
+  },
+  {
+    "name": "Amanda",
+    "email": "a@gmail.com",
+    "id": 1322,
+    "birthDate": "2000-11-03T02:00:00.000Z",
+    "specialities": ["OOP"]
+  }
+]
