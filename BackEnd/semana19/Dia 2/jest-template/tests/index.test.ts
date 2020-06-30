@@ -1,4 +1,4 @@
-import { validateCharacter, character } from "../src";
+import { validateCharacter, character, performAttack } from "../src";
 
 describe("Testing validateCharacter", () => {
   test("function must return false without a name", () => {
@@ -104,5 +104,61 @@ describe("mocking validateCharacter function", () => {
     const validateCharacter = jest.fn(() => {
       return false;
     });
+  });
+});
+
+describe("Testing performAttack function", () => {
+  test("Defender must lose 200 hp ", () => {
+    const validateCharacter = jest.fn(() => {
+      return true;
+    });
+    const attacker: character = {
+      name: "Luan",
+      life: 1000,
+      str: 700,
+      def: 500,
+    };
+
+    const defender: character = {
+      name: "Alt Luan",
+      life: 1000,
+      str: 500,
+      def: 500,
+    };
+
+    performAttack(attacker, defender, validateCharacter);
+
+    expect(defender.life).toBe(800);
+    expect(validateCharacter).toBeCalled();
+    expect(validateCharacter).toBeCalledTimes(2);
+    expect(validateCharacter).toReturnTimes(2);
+  });
+
+  test("A character has a invalid attribute", () => {
+    const validateCharacter = jest.fn(() => {
+      return false;
+    });
+    const attacker: character = {
+      name: "",
+      life: 1000,
+      str: 700,
+      def: 500,
+    };
+
+    const defender: character = {
+      name: "Alt Luan",
+      life: 1000,
+      str: 500,
+      def: 500,
+    };
+
+    try {
+      performAttack(attacker, defender, validateCharacter);
+    } catch (err) {
+        expect(err.message).toEqual("Invalid Character")
+        expect(validateCharacter).toBeCalled();
+        expect(validateCharacter).toBeCalledTimes(1);
+        expect(validateCharacter).toReturnTimes(1);
+    }
   });
 });

@@ -52,4 +52,4 @@ export function performAttack(
   };
 }
 
-console.log(performAttack(char1, char2, validateCharacter));
+// console.log(performAttack(char1, char2, validateCharacter));
