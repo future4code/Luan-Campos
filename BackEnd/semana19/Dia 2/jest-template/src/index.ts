@@ -5,11 +5,18 @@ export interface character {
   def: number;
 }
 
-const newChar: character = {
+const char1: character = {
   name: "Luan",
   life: 1500,
-  str: 750,
+  str: 1000,
   def: 500,
+};
+
+const char2: character = {
+  name: "Jonas",
+  life: 1700,
+  str: 600,
+  def: 900,
 };
 
 export function validateCharacter(char: character): Boolean {
@@ -21,12 +28,28 @@ export function validateCharacter(char: character): Boolean {
   ) {
     return false;
   }
-
   if (char.life < 0 || char.str < 0 || char.def < 0) {
     return false;
   }
-
   return true;
 }
 
-console.log(validateCharacter(newChar))
+export function performAttack(
+  attacker: character,
+  defender: character,
+  validator: (any: character) => Boolean
+) {
+  if (!validator(attacker) || !validator(defender)) {
+    throw new Error("Invalid Character");
+  }
+
+  if (defender.def < attacker.str) {
+    defender.life -= attacker.str - defender.def;
+  }
+
+  return {
+    defender,
+  };
+}
+
+console.log(performAttack(char1, char2, validateCharacter));
