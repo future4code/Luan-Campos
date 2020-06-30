@@ -1,4 +1,4 @@
-interface character {
+export interface character {
   name: string;
   life: number;
   str: number;
@@ -12,7 +12,7 @@ const newChar: character = {
   def: 500,
 };
 
-function validateCharacter(char: character): Boolean {
+export function validateCharacter(char: character): Boolean {
   if (
     !char.name ||
     char.life === undefined ||
