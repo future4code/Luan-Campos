@@ -92,3 +92,17 @@ describe("Testing validateCharacter", () => {
     expect(validate).toBe(true);
   });
 });
+
+describe("mocking validateCharacter function", () => {
+  test("Mocked function returning true", () => {
+    const validateCharacter = jest.fn(() => {
+      return true;
+    });
+  });
+
+  test("Mocked function returning false", () => {
+    const validateCharacter = jest.fn(() => {
+      return false;
+    });
+  });
+});
