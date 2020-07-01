@@ -108,7 +108,7 @@ describe("mocking validateCharacter function", () => {
 });
 
 describe("Testing performAttack function", () => {
-  test("Defender must lose 200 hp ", () => {
+  test("Defender must lose 200 hp", () => {
     const validateCharacter = jest.fn(() => {
       return true;
     });
@@ -155,10 +155,32 @@ describe("Testing performAttack function", () => {
     try {
       performAttack(attacker, defender, validateCharacter);
     } catch (err) {
-        expect(err.message).toEqual("Invalid Character")
-        expect(validateCharacter).toBeCalled();
-        expect(validateCharacter).toBeCalledTimes(1);
-        expect(validateCharacter).toReturnTimes(1);
+      expect(err.message).toEqual("Invalid Character");
+      expect(validateCharacter).toBeCalled();
+      expect(validateCharacter).toBeCalledTimes(1);
+      expect(validateCharacter).toReturnTimes(1);
     }
+  });
+
+  test("Defender must lose 0 hp", () => {
+    const validateCharacter = jest.fn(() => {
+      return true;
+    });
+
+    const attacker: character = {
+      name: "Luan",
+      life: 1000,
+      str: 700,
+      def: 500,
+    };
+
+    const defender: character = {
+      name: "Alt Luan",
+      life: 1000,
+      str: 500,
+      def: 1000,
+    };
+
+    performAttack(attacker, defender, validateCharacter)
   });
 });
