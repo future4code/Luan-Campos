@@ -48,4 +48,37 @@ export class UserBusiness {
 
     return { accessToken };
   }
+
+  public async login(email: string, password: string) {
+    if (!email || !password) {
+      throw new Error("Missing input");
+    }
+
+    if (email.indexOf("@") === -1) {
+      throw new Error("Invalid email");
+    }
+
+    if (password.length < 6) {
+      throw new Error("Password must have at least 6 characters");
+    }
+
+    const user = await this.userDatabase.getUserByEmail(email);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const decryptedPassword = this.hashManager.compare(password, user.password);
+
+    if (!decryptedPassword) {
+      throw new Error("Invalid password");
+    }
+
+    const accessToken = this.authenticator.generateToken({
+      id: user.id,
+      role: user.role,
+    });
+
+    return { accessToken };
+  }
 }
