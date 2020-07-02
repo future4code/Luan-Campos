@@ -4,6 +4,7 @@ import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 import { UserDatabase } from "../data/UserDatabase";
 import { UserBusiness } from "../business/UserBusiness";
+import { BaseDatabase } from "../data/BaseDatabase";
 
 export class UserController {
   private static UserBusiness = new UserBusiness(
@@ -27,6 +28,8 @@ export class UserController {
         message: err.message,
       });
     }
+
+    await BaseDatabase.destroyConnection();
   }
 
   async login(req: Request, res: Response) {
@@ -42,5 +45,7 @@ export class UserController {
         message: err.message,
       });
     }
+
+    await BaseDatabase.destroyConnection();
   }
 }
