@@ -1,4 +1,4 @@
-function n(arr: number[]) {
+function n(arr: number[]): Object {
   let sum: number = 0;
   let quant: number = 0;
   let mult: number = 1;
