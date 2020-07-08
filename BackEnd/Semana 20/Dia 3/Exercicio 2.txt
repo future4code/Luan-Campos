@@ -1,0 +1,9 @@
+1) verifyExistence({"body": true}) -> Retorna false.
+verifyExistence({queryStringParameters: "search") -> Retorna true.
+verifyExistence() -> Retorna false.
+
+2) Para transformar o conteúdo do body em um json para ser acessado como objeto.
+
+3) Retorna 200 quando ou o body ou a querie possui algum valor. Qualquer valor, ex: body: {"name": "Luan"}.
+
+4) Quando o body e a querie estão vazias.
