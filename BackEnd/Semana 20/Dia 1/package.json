@@ -1,0 +1,16 @@
+{
+  "name": "dia-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "ts-node ./ex2.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}
