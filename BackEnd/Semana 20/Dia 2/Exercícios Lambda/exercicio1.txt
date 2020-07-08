@@ -1,0 +1,16 @@
+A) Não, consegui entender tudo.
+B) Acredito que retorne um "Missing input".
+C) "Missing input".
+D) "Missing email".
+E) "Invalid password".
+F) "User is correct".
+G) Devemos mudar o statusCode da condição (!user.email) para 422.
+H){
+    "user": {
+        "info": {
+            "name": "Luanzinho",
+            "email": "luanzinho@gmail.com,
+            "password": "luanzinhotop13"
+        }
+    }
+}
