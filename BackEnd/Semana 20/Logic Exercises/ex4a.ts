@@ -7,4 +7,4 @@ function identifier(text: string): Boolean {
 }
 
 console.log(identifier("luan777")); // false
-console.log(identifier("56456")); // true
+console.log(identifier("564566")); // true
