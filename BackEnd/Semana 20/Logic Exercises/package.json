@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "ts-node ./ex2b.ts"
+    "start": "ts-node ./ex3b.ts"
   },
   "author": "",
   "license": "ISC"
