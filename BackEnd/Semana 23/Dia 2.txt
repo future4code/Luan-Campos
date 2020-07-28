@@ -1,0 +1,5 @@
+1 - O(n).
+2 - O(n).
+3 - O(1).
+4 - O(n²) -> Eu teria colocado 'O(n)' se não tivesse lido o gabarito falando da função 'indexOf'.
+5 - 3, 1 e 2, 4. 
