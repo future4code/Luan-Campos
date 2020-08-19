@@ -18,4 +18,4 @@ const moveZeros = (array) => {
   return newArray;
 };
 
-console.log(moveZeros([0,3,0,0,4,0,5]));
+console.log(moveZeros([0, 3, 0, 0, 4, 0, 5]));
